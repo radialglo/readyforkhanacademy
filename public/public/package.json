@@ -1,0 +1,12 @@
+{
+  "name": "squares",
+  "version": "0.1.0",
+  "author": "radialglo",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-sass": "*",
+    "load-grunt-tasks": "~0.2.0"
+  }
+}

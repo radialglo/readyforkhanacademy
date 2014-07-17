@@ -1,0 +1,357 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Londrina+Sketch);
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/fonts/fontawesome-webfont.eot");
+  src: url("/fonts/fontawesome-webfont.woff") format("woff"), url("/fonts/fontawesome-webfont.ttf") format("truetype"), url("/fonts/fontawesome-webfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/fonts/fontawesome-webfont.eot?v=3.6.6");
+  src: url("/fonts/fontawesome-webfont.eot?#iefix&v=3.6.6") format("embedded-opentype"), url("/fonts/fontawesome-webfont.woff?v=3.6.6") format("woff"), url("/fonts/fontawesome-webfont.ttf?v=3.6.6") format("truetype"), url("/fonts/fontawesome-webfont.svg#fontawesomeregular?v=3.6.6") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
+  background-image: -moz-linear-gradient(45deg, #125758, #333333);
+  background-image: -o-linear-gradient(45deg, #125758, #333333);
+  background-image: linear-gradient(45deg, #125758, #333333);
+  color: #EFF;
+  overflow: hidden;
+}
+
+span {
+  display: inline-block;
+}
+
+.logotype {
+  font-family: FontAwesome;
+  letter-spacing: 0;
+  position: relative;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  font-size: 50px;
+  padding-left: 1em;
+}
+
+.logotype--khan {
+  text-transform: uppercase;
+}
+
+/*
+.logotype-khan:first-child:before {
+    color: #9db63b;
+     content: "•";
+    content: "\2022";
+}
+*/
+.logotype--academy {
+  text-transform: lowercase;
+}
+
+.type--londrian {
+  font-family: 'Londrina Sketch';
+}
+
+.content {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+}
+
+h1, h2 {
+  font-size: 18px;
+  text-align: center;
+  margin: 5em;
+}
+
+.c1, .c2, .c3, .c4, .c5 {
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  -o-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  opacity: 0;
+  font-size: 1.5em;
+}
+
+.c6 {
+  opacity: 0;
+}
+
+.c7 {
+  opacity: 0;
+}
+
+.c8 {
+  opacity: 0;
+}
+
+.c9 {
+  opacity: 0;
+}
+
+.c10 {
+  opacity: 0;
+}
+
+.c11 {
+  opacity: 0;
+}
+
+.c12 {
+  opacity: 0;
+}
+
+.c13 {
+  opacity: 0;
+}
+
+.c14 {
+  opacity: 0;
+}
+
+.c15 {
+  opacity: 0;
+}
+
+.c16 {
+  opacity: 0;
+}
+
+.render .c1, .render .c2, .render .c3, .render .c4, .render .c5 {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  -ms-transform: rotateX(0deg);
+  -o-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.render span {
+  -webkit-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+}
+.render .c1 {
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+.render .c2 {
+  -webkit-transition-delay: 200ms;
+  -moz-transition-delay: 200ms;
+  -o-transition-delay: 200ms;
+  transition-delay: 200ms;
+}
+.render .c3 {
+  -webkit-transition-delay: 300ms;
+  -moz-transition-delay: 300ms;
+  -o-transition-delay: 300ms;
+  transition-delay: 300ms;
+}
+.render .c4 {
+  -webkit-transition-delay: 400ms;
+  -moz-transition-delay: 400ms;
+  -o-transition-delay: 400ms;
+  transition-delay: 400ms;
+}
+.render .c5 {
+  -webkit-transition-delay: 500ms;
+  -moz-transition-delay: 500ms;
+  -o-transition-delay: 500ms;
+  transition-delay: 500ms;
+}
+.render .c6 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 650ms;
+  -moz-transition-delay: 650ms;
+  -o-transition-delay: 650ms;
+  transition-delay: 650ms;
+}
+.render .c7 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 675ms;
+  -moz-transition-delay: 675ms;
+  -o-transition-delay: 675ms;
+  transition-delay: 675ms;
+}
+.render .c8 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 700ms;
+  -moz-transition-delay: 700ms;
+  -o-transition-delay: 700ms;
+  transition-delay: 700ms;
+}
+.render .c9 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 725ms;
+  -moz-transition-delay: 725ms;
+  -o-transition-delay: 725ms;
+  transition-delay: 725ms;
+}
+.render .c10 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 750ms;
+  -moz-transition-delay: 750ms;
+  -o-transition-delay: 750ms;
+  transition-delay: 750ms;
+}
+.render .c11 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 775ms;
+  -moz-transition-delay: 775ms;
+  -o-transition-delay: 775ms;
+  transition-delay: 775ms;
+}
+.render .c12 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 800ms;
+  -moz-transition-delay: 800ms;
+  -o-transition-delay: 800ms;
+  transition-delay: 800ms;
+}
+.render .c13 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 825ms;
+  -moz-transition-delay: 825ms;
+  -o-transition-delay: 825ms;
+  transition-delay: 825ms;
+}
+.render .c14 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 850ms;
+  -moz-transition-delay: 850ms;
+  -o-transition-delay: 850ms;
+  transition-delay: 850ms;
+}
+.render .c15 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 875ms;
+  -moz-transition-delay: 875ms;
+  -o-transition-delay: 875ms;
+  transition-delay: 875ms;
+}
+.render .c16 {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: 500ms all ease-in;
+  -moz-transition: 500ms all ease-in;
+  -o-transition: 500ms all ease-in;
+  transition: 500ms all ease-in;
+  -webkit-transition-delay: 900ms;
+  -moz-transition-delay: 900ms;
+  -o-transition-delay: 900ms;
+  transition-delay: 900ms;
+}

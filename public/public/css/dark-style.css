@@ -1,0 +1,8 @@
+@import url(style.css);
+body {
+  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
+  background-image: -moz-linear-gradient(45deg, #125758, #333333);
+  background-image: -o-linear-gradient(45deg, #125758, #333333);
+  background-image: linear-gradient(45deg, #125758, #333333);
+  color: #EFF;
+}
