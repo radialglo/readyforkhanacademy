@@ -1,0 +1,65 @@
+@import "compass/css3";
+* {
+    @include box-sizing(border-box);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #141518;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+$count: 10;
+$width: 960px;
+$height: 640px;
+
+$yTranslation: 200px;
+$xIncrement: 200px;
+
+#world {
+    height: 100%;
+    @include perspective(3000px);
+    @include perspective-origin(right);
+    overflow: hidden;
+    div {
+        width: $width;
+        height: $height;
+        
+        position: absolute;
+      
+        @include box-shadow(0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0,0,0,0.45));
+        @include box-shadow(0 24px 95px rgba(0,0,0,0.9));
+        border-radius: 4px;
+        // background: #FC3 !important;
+        background: #0FF !important;
+    }
+    div:nth-child(1) {
+        -webkit-filter: none;
+    }
+   @for $i from 1 through $count {
+        div:nth-child(#{$i}) {
+            // @include transition-delay($i * 75ms);
+            // @include translate3d($xIncrement * ($i), $yTranslation - (50px * $i), 400px + (-400px * $i));
+            background: rgba(0, 255, 255, ($i / $count));
+            z-index: $count - $i + 1;
+        }
+    }
+}

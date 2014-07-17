@@ -1,0 +1,13 @@
+@import "compass/css3";
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
