@@ -80,12 +80,13 @@ module.exports = function (grunt) {
         },
         watch: {
             css: {
-                files: [sassDir + "*.scss"],
-                tasks: ["sass"]
+                files: [sassDir + "*.scss", sassDir + "**/" + "*.scss"],
+                tasks: ["css"]
             }
         },
 
     });
 
     grunt.registerTask("default",  ["jshint", "shell:cleanCSS", "sass", "cssmin"]);
+    grunt.registerTask("css",  ["shell:cleanCSS", "sass", "cssmin"]);
 };

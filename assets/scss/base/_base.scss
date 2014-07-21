@@ -14,11 +14,60 @@
 /**
  * Responsive
  */
- @import "responsive";
+@import "responsive";
 
- /**
-  * Functions
-  */
+/**
+ * Functions
+ */
 
-  @import "functions";
+@import "functions";
+
+/**
+ * Typography
+ */
+
+@import "typography";
+
+
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
+
+@import "compass/css3";
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@include exports('base') {
+
+$bgColor: #141518 !default;
+
+// include border and padding in addition to default content
+* {
+    @include box-sizing(border-box);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: $bgColor;
+}
+
+}
 

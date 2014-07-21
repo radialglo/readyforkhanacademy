@@ -1,31 +1,5 @@
-@import "compass/css3";
-* {
-    @include box-sizing(border-box);
-}
+@import "../../base/base";
 
-html, body {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    background: #141518;
-}
-
-@mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
-        @content;
-    }
-    @-moz-keyframes #{$name} {
-        @content;
-    }
-    @-ms-keyframes #{$name} {
-        @content;
-    }
-    @keyframes #{$name} {
-        @content;
-    }
-}
 
 $count: 10;
 $width: 960px;
