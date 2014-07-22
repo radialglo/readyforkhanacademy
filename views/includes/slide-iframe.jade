@@ -2,9 +2,12 @@ include mixins/slide-content
 
 block vars
 
+
 if slideId
     div(id=slideId class="slide")
-        +slide-content
+        +slide-content-iframe
+       
 else
     div(class="slide")
-        +slide-content
+        +slide-content-iframe
+        

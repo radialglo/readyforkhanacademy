@@ -67,8 +67,32 @@ html, body {
     margin: 0;
     // 16px
     font-size: 100%;
-    overflow: hidden;
+    font-family: Sniglet;
     background: $bgColor;
+}
+
+h1, h2 {
+    font-weight: normal;
+    line-height: 1.5em;
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@include mq-small-only {
+    html, body {
+        font-size: 62.5%;
+        // font-size: 86.5%;
+    }
+}
+
+@include mq-medium-up {
+    html, body {
+        overflow: hidden;
+    }
 }
 
 }

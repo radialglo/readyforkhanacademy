@@ -12,6 +12,7 @@
  *    user zoom.
  */
 @import url(http://fonts.googleapis.com/css?family=Londrina+Sketch);
+@import url(http://fonts.googleapis.com/css?family=Sniglet:400,800);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -483,6 +484,7 @@ th {
 
 .type--londrian {
   font-family: 'Londrina Sketch';
+  font-weight: bold;
 }
 
 /**
@@ -501,10 +503,31 @@ html, body {
   padding: 0;
   margin: 0;
   font-size: 100%;
-  overflow: hidden;
+  font-family: Sniglet;
   background: #141518;
 }
 
+h1, h2 {
+  font-weight: normal;
+  line-height: 1.5em;
+}
+
+iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 40em) {
+  html, body {
+    font-size: 62.5%;
+  }
+}
+@media only screen and (min-width: 40.063em) {
+  html, body {
+    overflow: hidden;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
@@ -581,7 +604,6 @@ html, body {
   -ms-perspective-origin: right;
   -o-perspective-origin: right;
   perspective-origin: right;
-  overflow: hidden;
 }
 #world .slide:nth-child(1) {
   z-index: 10;
@@ -614,17 +636,13 @@ html, body {
   z-index: 1;
 }
 
+@media only screen and (min-width: 40.063em) {
+  #world {
+    overflow: hidden;
+  }
+}
 .slide {
   width: 60rem;
-  position: absolute;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
-  -webkit-box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
-  -moz-box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
-  box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
-  border-radius: 4px;
-  background: #0FF;
 }
 
 .aspect-ratio {
@@ -641,6 +659,36 @@ html, body {
   height: 100%;
 }
 
+@media only screen and (max-width: 40em) {
+  .slide {
+    position: relative;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    width: 100%;
+    padding: 1.25em;
+  }
+
+  .aspect-ratio {
+    padding-bottom: 100%;
+  }
+}
+@media only screen and (min-width: 40.063em) {
+  .slide {
+    position: absolute;
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
+    -moz-box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
+    border-radius: 4px;
+    background: #0FF;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
@@ -744,8 +792,13 @@ html, body {
   position: relative;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  font-size: 2.1875rem;
-  padding-left: 1em;
+  font-size: 2.25rem;
+  padding-left: 2.25rem;
+}
+@media only screen and (max-width: 40em) {
+  #hello-ka .logotype {
+    padding-left: .5rem;
+  }
 }
 #hello-ka .logotype--khan {
   text-transform: uppercase;
@@ -754,9 +807,8 @@ html, body {
   text-transform: lowercase;
 }
 #hello-ka h1, #hello-ka h2 {
-  font-size: 1.125rem;
   text-align: center;
-  margin: 5em;
+  margin: 5rem 1em;
 }
 #hello-ka .c1, #hello-ka .c2, #hello-ka .c3, #hello-ka .c4, #hello-ka .c5 {
   -webkit-transform: rotateX(90deg);
@@ -765,7 +817,6 @@ html, body {
   -o-transform: rotateX(90deg);
   transform: rotateX(90deg);
   opacity: 0;
-  font-size: 1.5em;
 }
 #hello-ka .c6 {
   opacity: 0;
@@ -1019,4 +1070,227 @@ html, body {
   -moz-transition-delay: 900ms;
   -o-transition-delay: 900ms;
   transition-delay: 900ms;
+}
+
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
+.dark-green {
+  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
+  background-image: -moz-linear-gradient(45deg, #125758, #333333);
+  background-image: -o-linear-gradient(45deg, #125758, #333333);
+  background-image: linear-gradient(45deg, #125758, #333333);
+  color: #EFF;
+}
+.dark-green .content {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.dark-green h1, .dark-green h2 {
+  text-align: center;
+}
+
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
+#specifics .happy-hopper {
+  position: absolute;
+  left: 80%;
+  top: 1.875rem;
+}
+
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
+.content--iframe {
+  height: 100%;
 }

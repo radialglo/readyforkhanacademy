@@ -15,6 +15,7 @@
 @include exports('typography') {
 
 @import url(http://fonts.googleapis.com/css?family=Londrina+Sketch);
+@import url(http://fonts.googleapis.com/css?family=Sniglet:400,800);
 
 @font-face {
     font-family: 'FontAwesome';
@@ -33,6 +34,7 @@
 
 .type--londrian {
     font-family: 'Londrina Sketch';
+    font-weight: bold;
 }
 
 }

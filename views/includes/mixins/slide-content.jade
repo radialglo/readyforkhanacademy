@@ -1,0 +1,16 @@
+mixin slide-content(type)
+    if type == "iframe"
+        div(class="aspect-ratio")
+            div(class="content-wrapper")
+                div(class="content--iframe")
+                    if iframeSrc
+                        iframe(src=iframeSrc)
+    else
+        div(class="aspect-ratio")
+            div(class="content-wrapper")
+                div(class="content")
+                    block content
+
+
+mixin slide-content-iframe
+      +slide-content("iframe")

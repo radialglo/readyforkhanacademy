@@ -30,8 +30,14 @@
         position: relative;
         text-align: center;
         -webkit-font-smoothing: antialiased;
-        font-size: rem-calc(35px);
-        padding-left: 1em;
+        font-size: rem-calc(36px);
+        padding-left: rem-calc(36px);
+    }
+
+    @include mq-small-only {
+        .logotype {
+            padding-left: .5rem;
+        }
     }
 
     .logotype--khan {
@@ -52,16 +58,16 @@
 
 
     h1, h2 {
-        font-size: rem-calc(18px);
+        // font-size: rem-calc(18px);
         text-align: center;
-        margin: 5em;
+        margin: 5rem 1em;
     }
 
     $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
     .c1, .c2, .c3, .c4, .c5 {
         @include transform( rotateX(90deg) );
         opacity: 0;
-        font-size: 1.5em;
+        // font-size: 1.5rem;
     }
     @for $i from 6 through 16 {
         .c#{$i} {
