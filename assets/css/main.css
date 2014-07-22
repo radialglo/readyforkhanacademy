@@ -496,6 +496,7 @@ html, body {
   width: 100%;
   padding: 0;
   margin: 0;
+  font-size: 100%;
   overflow: hidden;
   background: #141518;
 }
@@ -578,9 +579,39 @@ html, body {
   perspective-origin: right;
   overflow: hidden;
 }
-#world div {
-  width: 960px;
-  height: 640px;
+#world .slide:nth-child(1) {
+  z-index: 10;
+}
+#world .slide:nth-child(2) {
+  z-index: 9;
+}
+#world .slide:nth-child(3) {
+  z-index: 8;
+}
+#world .slide:nth-child(4) {
+  z-index: 7;
+}
+#world .slide:nth-child(5) {
+  z-index: 6;
+}
+#world .slide:nth-child(6) {
+  z-index: 5;
+}
+#world .slide:nth-child(7) {
+  z-index: 4;
+}
+#world .slide:nth-child(8) {
+  z-index: 3;
+}
+#world .slide:nth-child(9) {
+  z-index: 2;
+}
+#world .slide:nth-child(10) {
+  z-index: 1;
+}
+
+.slide {
+  width: 60rem;
   position: absolute;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25), 0 3px 3px -3px rgba(0, 0, 0, 0.45);
@@ -589,50 +620,21 @@ html, body {
   -moz-box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
   box-shadow: 0 24px 95px rgba(0, 0, 0, 0.9);
   border-radius: 4px;
-  background: #0FF !important;
+  background: #0FF;
 }
-#world div:nth-child(1) {
-  -webkit-filter: none;
+
+.aspect-ratio {
+  position: relative;
+  padding-bottom: 66.66667%;
+  height: 0;
 }
-#world div:nth-child(1) {
-  background: rgba(0, 255, 255, 0.1);
-  z-index: 10;
-}
-#world div:nth-child(2) {
-  background: rgba(0, 255, 255, 0.2);
-  z-index: 9;
-}
-#world div:nth-child(3) {
-  background: rgba(0, 255, 255, 0.3);
-  z-index: 8;
-}
-#world div:nth-child(4) {
-  background: rgba(0, 255, 255, 0.4);
-  z-index: 7;
-}
-#world div:nth-child(5) {
-  background: rgba(0, 255, 255, 0.5);
-  z-index: 6;
-}
-#world div:nth-child(6) {
-  background: rgba(0, 255, 255, 0.6);
-  z-index: 5;
-}
-#world div:nth-child(7) {
-  background: rgba(0, 255, 255, 0.7);
-  z-index: 4;
-}
-#world div:nth-child(8) {
-  background: rgba(0, 255, 255, 0.8);
-  z-index: 3;
-}
-#world div:nth-child(9) {
-  background: rgba(0, 255, 255, 0.9);
-  z-index: 2;
-}
-#world div:nth-child(10) {
-  background: cyan;
-  z-index: 1;
+
+.content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /*------------------------------------*\
@@ -700,6 +702,14 @@ html, body {
  * @see http://compass-style.org/reference/compass/css3/
  */
 #hello-ka {
+  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
+  background-image: -moz-linear-gradient(45deg, #125758, #333333);
+  background-image: -o-linear-gradient(45deg, #125758, #333333);
+  background-image: linear-gradient(45deg, #125758, #333333);
+  background-image: -webkit-linear-gradient(45deg, #ffa500, #ffff00);
+  background-image: -moz-linear-gradient(45deg, #ffa500, #ffff00);
+  background-image: -o-linear-gradient(45deg, #ffa500, #ffff00);
+  background-image: linear-gradient(45deg, #ffa500, #ffff00);
   /*
   .logotype-khan:first-child:before {
       color: #9db63b;
@@ -709,18 +719,17 @@ html, body {
   */
 }
 #hello-ka .content {
-  height: 100%;
-  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
-  background-image: -moz-linear-gradient(45deg, #125758, #333333);
-  background-image: -o-linear-gradient(45deg, #125758, #333333);
-  background-image: linear-gradient(45deg, #125758, #333333);
-  background-image: -webkit-linear-gradient(45deg, #ffa500, #ffff00);
-  background-image: -moz-linear-gradient(45deg, #ffa500, #ffff00);
-  background-image: -o-linear-gradient(45deg, #ffa500, #ffff00);
-  background-image: linear-gradient(45deg, #ffa500, #ffff00);
   color: #CCC;
   color: #000;
   overflow: hidden;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 #hello-ka span {
   display: inline-block;
@@ -731,7 +740,7 @@ html, body {
   position: relative;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  font-size: 35px;
+  font-size: 2.1875rem;
   padding-left: 1em;
 }
 #hello-ka .logotype--khan {
@@ -743,18 +752,8 @@ html, body {
 #hello-ka .type--londrian {
   font-family: 'Londrina Sketch';
 }
-#hello-ka .content {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  width: 100%;
-}
 #hello-ka h1, #hello-ka h2 {
-  font-size: 18px;
+  font-size: 1.125rem;
   text-align: center;
   margin: 5em;
 }
@@ -800,51 +799,51 @@ html, body {
 #hello-ka .c16 {
   opacity: 0;
 }
-#hello-ka .render .c1, #hello-ka .render .c2, #hello-ka .render .c3, #hello-ka .render .c4, #hello-ka .render .c5 {
+#hello-ka.render .c1, #hello-ka.render .c2, #hello-ka.render .c3, #hello-ka.render .c4, #hello-ka.render .c5 {
   -webkit-transform: rotateX(0deg);
   -moz-transform: rotateX(0deg);
   -ms-transform: rotateX(0deg);
   -o-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
-#hello-ka .render span {
+#hello-ka.render span {
   -webkit-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   -moz-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   -o-transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   transition: 1s all cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 1;
 }
-#hello-ka .render .c1 {
+#hello-ka.render .c1 {
   -webkit-transition-delay: 100ms;
   -moz-transition-delay: 100ms;
   -o-transition-delay: 100ms;
   transition-delay: 100ms;
 }
-#hello-ka .render .c2 {
+#hello-ka.render .c2 {
   -webkit-transition-delay: 200ms;
   -moz-transition-delay: 200ms;
   -o-transition-delay: 200ms;
   transition-delay: 200ms;
 }
-#hello-ka .render .c3 {
+#hello-ka.render .c3 {
   -webkit-transition-delay: 300ms;
   -moz-transition-delay: 300ms;
   -o-transition-delay: 300ms;
   transition-delay: 300ms;
 }
-#hello-ka .render .c4 {
+#hello-ka.render .c4 {
   -webkit-transition-delay: 400ms;
   -moz-transition-delay: 400ms;
   -o-transition-delay: 400ms;
   transition-delay: 400ms;
 }
-#hello-ka .render .c5 {
+#hello-ka.render .c5 {
   -webkit-transition-delay: 500ms;
   -moz-transition-delay: 500ms;
   -o-transition-delay: 500ms;
   transition-delay: 500ms;
 }
-#hello-ka .render .c6 {
+#hello-ka.render .c6 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -860,7 +859,7 @@ html, body {
   -o-transition-delay: 650ms;
   transition-delay: 650ms;
 }
-#hello-ka .render .c7 {
+#hello-ka.render .c7 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -876,7 +875,7 @@ html, body {
   -o-transition-delay: 675ms;
   transition-delay: 675ms;
 }
-#hello-ka .render .c8 {
+#hello-ka.render .c8 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -892,7 +891,7 @@ html, body {
   -o-transition-delay: 700ms;
   transition-delay: 700ms;
 }
-#hello-ka .render .c9 {
+#hello-ka.render .c9 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -908,7 +907,7 @@ html, body {
   -o-transition-delay: 725ms;
   transition-delay: 725ms;
 }
-#hello-ka .render .c10 {
+#hello-ka.render .c10 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -924,7 +923,7 @@ html, body {
   -o-transition-delay: 750ms;
   transition-delay: 750ms;
 }
-#hello-ka .render .c11 {
+#hello-ka.render .c11 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -940,7 +939,7 @@ html, body {
   -o-transition-delay: 775ms;
   transition-delay: 775ms;
 }
-#hello-ka .render .c12 {
+#hello-ka.render .c12 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -956,7 +955,7 @@ html, body {
   -o-transition-delay: 800ms;
   transition-delay: 800ms;
 }
-#hello-ka .render .c13 {
+#hello-ka.render .c13 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -972,7 +971,7 @@ html, body {
   -o-transition-delay: 825ms;
   transition-delay: 825ms;
 }
-#hello-ka .render .c14 {
+#hello-ka.render .c14 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -988,7 +987,7 @@ html, body {
   -o-transition-delay: 850ms;
   transition-delay: 850ms;
 }
-#hello-ka .render .c15 {
+#hello-ka.render .c15 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
@@ -1004,7 +1003,7 @@ html, body {
   -o-transition-delay: 875ms;
   transition-delay: 875ms;
 }
-#hello-ka .render .c16 {
+#hello-ka.render .c16 {
   opacity: 1;
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);

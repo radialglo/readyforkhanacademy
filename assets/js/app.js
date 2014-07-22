@@ -1,5 +1,5 @@
 
-var frames = Array.prototype.slice.call(document.querySelectorAll("#world div")),
+var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div")),
     yTranslation = 0,
     yIncrement = 0, // 50
     xIncrement = 0,

@@ -30,6 +30,13 @@ $modules: () !default;
   @return nth($range, 2);
 }
 
+// STRIP UNIT
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+
 // CONVERT TO REM
 @function convert-to-rem($value, $base-value: $rem-base)  {
   $value: strip-unit($value) / strip-unit($base-value) * 1rem;

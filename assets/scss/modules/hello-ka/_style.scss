@@ -2,10 +2,12 @@
 
 #hello-ka {
 
+    // height: 100%;
+    // width: 100%;
+    @include background-image( linear-gradient(45deg, #125758, #333) );
+    @include background-image( linear-gradient(45deg, orange, yellow) );
+
     .content {
-        height: 100%;
-        @include background-image( linear-gradient(45deg, #125758, #333) );
-        @include background-image( linear-gradient(45deg, orange, yellow) );
         // color: #EFF;
         color: #CCC;
         color: #000;
@@ -13,8 +15,8 @@
         // font-size: 75px;
         position: absolute;
         top: 50%;
-        @include transform( translateY(-50%) );
         width: 100%;
+        @include transform( translateY(-50%) );
     }
 
 
@@ -28,7 +30,7 @@
         position: relative;
         text-align: center;
         -webkit-font-smoothing: antialiased;
-        font-size: 35px;
+        font-size: rem-calc(35px);
         padding-left: 1em;
     }
 
@@ -53,7 +55,7 @@
     }
 
     h1, h2 {
-        font-size: 18px;
+        font-size: rem-calc(18px);
         text-align: center;
         margin: 5em;
     }
