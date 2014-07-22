@@ -1,0 +1,14 @@
+mixin slide-content
+    div(class="aspect-ratio")
+        div(class="content-wrapper")
+            div(class="content")
+                block content
+
+block vars
+
+if slideId
+    div(id=slideId class="slide")
+        +slide-content
+else
+    div(class="slide")
+        +slide-content

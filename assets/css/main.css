@@ -481,6 +481,10 @@ th {
   font-style: normal;
 }
 
+.type--londrian {
+  font-family: 'Londrina Sketch';
+}
+
 /**
  * Compass CSS3
  * @see http://compass-style.org/reference/compass/css3/
@@ -748,9 +752,6 @@ html, body {
 }
 #hello-ka .logotype--academy {
   text-transform: lowercase;
-}
-#hello-ka .type--londrian {
-  font-family: 'Londrina Sketch';
 }
 #hello-ka h1, #hello-ka h2 {
   font-size: 1.125rem;
