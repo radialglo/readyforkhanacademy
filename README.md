@@ -47,4 +47,34 @@ _/    _/    _/_/_/  _/    _/  _/_/_/    _/_/_/_/  _/      _/      _/
 |
 ```
 
+### Development
+The staging environment for this application is located at
+[http://readyforkhanacademy.herokuapp.com/](http://readyforkhanacademy.herokuapp.com/)
+
+#### Installation
+```
+npm i 
+```
+
+#### Starting the App
+```
+npm start
+```
+or
+```
+node app.js
+```
+
+#### Pushing to Stage
+```
+git push heroku stage
+```
+
+### Production
+
+#### Installation
+```
+npm i --production
+```
+
 
