@@ -1,7 +1,7 @@
 var express = require('express'),
     http = require('http'),
     app = express(),
-    httpPort = 3000;
+    httpPort = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/assets', { maxAge: 86400 }));
 
