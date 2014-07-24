@@ -10,7 +10,8 @@ module.exports = function (grunt) {
 
     var assetsDir = "assets/",
         sassDir = assetsDir + "scss/",
-        cssDir = assetsDir + "css/";
+        cssDir = assetsDir + "css/",
+        jsDir = assetsDir + "js/";
 
     grunt.initConfig({
 
@@ -78,15 +79,37 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        uglify: {
+            options: {
+                banner: '/* /? [- /\\ |) `/   /= () /?   /< |-| /\\ |\\| /\\ ( /\\ |) [- |\\/| `/ <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                files: [{
+                    expand: true,
+                    cwd: jsDir,
+                    src: ['*.js', '!*min.js'], // don't minify min files
+                    dest: jsDir,
+                    ext: '.min.js'
+                }]
+            }
+        },
         watch: {
             css: {
                 files: [sassDir + "*.scss", sassDir + "**/" + "*.scss"],
                 tasks: ["css"]
             }
         },
+         build: {
+            // data
+            all: {
+                dest: jsDir + "readyforkhanacademy.js",
+            }
+        },
 
     });
 
-    grunt.registerTask("default",  ["jshint", "shell:cleanCSS", "sass", "cssmin"]);
+    grunt.loadTasks(jsDir + "build/tasks");
+    grunt.registerTask("default",  ["js", "css"]);
+    grunt.registerTask("js", ["jshint", "build:*:*", "uglify"]);
     grunt.registerTask("css",  ["shell:cleanCSS", "sass", "cssmin"]);
 };
