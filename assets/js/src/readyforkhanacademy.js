@@ -1,4 +1,5 @@
-define([], function() {
+define(['var/rfa'], function(requestAnimationFrame) {
+    
 var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div")),
     yTranslation = 0,
     yIncrement = 0, // 50
@@ -8,13 +9,22 @@ var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div"
     vanishingPoint = 19000,
     focusPoint = 1500,
     dampConstant = 0.5, // 0.2
-    perspectiveOffset = 1000;
+    perspectiveOffset = 1000,
+    ticking = false;
     // 24000 1500
 window.addEventListener("mousewheel", function(e) {
     // console.log(e);
     wheelDelta += e.wheelDelta * dampConstant;
-    update();
+    console.log("requesting Tick");
+    requestTick();
 });
+
+function requestTick() {
+    if(!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+    }
+}
 
 function update() {
     frames.forEach(function(f, i) {
@@ -38,7 +48,9 @@ function update() {
         f.style.webkitTransform = "translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
     
     });
+    ticking = false;
 }
-update();
+
+requestAnimationFrame(update);
 
 });

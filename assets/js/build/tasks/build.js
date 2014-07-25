@@ -27,8 +27,8 @@ module.exports = function(grunt) {
      **/
     function convert(name, path, contents) {
 
-        // Ignore guac's exports because this is the mainfile
-        if ( name !== "guac" ) {
+        // Ignore readyforkhanacademy's exports because this is the mainfile
+        if ( name !== "readyforkhanacademy" ) {
                 contents = contents
                         .replace( /\s*return\s+[^\}]+(\}\);[^\w\}]*)$/, "$1" )
                         // Multiple exports

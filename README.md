@@ -67,7 +67,7 @@ node app.js
 
 #### Pushing to Stage
 ```
-git push heroku stage
+git push heroku master
 ```
 
 ### Production
