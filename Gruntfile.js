@@ -70,12 +70,17 @@ module.exports = function (grunt) {
                 "globals": {
                     // Node Constants
                     "module": false,
-                    "require": false
+                    "require": false,
+                    "define": false,
+                    "console": false,
+                    "Hammer": false,
+                    "Modernizr": false,
+                    "addWheelListener": false
                 }
             },
             all: {
                 src: [
-                    "Gruntfile.js"
+                    "Gruntfile.js", jsDir + "src/readyforkhanacademy.js"
                 ]
             }
         },
@@ -99,17 +104,26 @@ module.exports = function (grunt) {
                 tasks: ["css"]
             }
         },
-         build: {
+        build: {
             // data
             all: {
-                dest: jsDir + "readyforkhanacademy.js",
+                dest: jsDir + "dist/app.js",
             }
         },
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: [jsDir + 'src/lib/hammer.min.js', jsDir + 'dist/app.js'],
+                dest: jsDir + 'readyforkhanacademy.js',
+            },
+        }
 
     });
 
     grunt.loadTasks(jsDir + "build/tasks");
     grunt.registerTask("default",  ["js", "css"]);
-    grunt.registerTask("js", ["jshint", "build:*:*", "uglify"]);
+    grunt.registerTask("js", ["jshint", "build:*:*", "concat", "uglify"]);
     grunt.registerTask("css",  ["shell:cleanCSS", "sass", "cssmin"]);
 };
