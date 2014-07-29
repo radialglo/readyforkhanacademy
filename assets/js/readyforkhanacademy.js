@@ -2,11 +2,80 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-06-25
+ * Date: 2014-06-28
  */
 (function(window, undefined) {
 
     "use strict";
+// https://developer.mozilla.org/en-US/docs/Web/Events/wheel
+
+// creates a global "addWheelListener" method
+// example: addWheelListener( elem, function( e ) { console.log( e.deltaY ); e.preventDefault(); } );
+(function(window,document) {
+
+    var prefix = "", _addEventListener, onwheel, support;
+
+    // detect event model
+    if ( window.addEventListener ) {
+        _addEventListener = "addEventListener";
+    } else {
+        _addEventListener = "attachEvent";
+        prefix = "on";
+    }
+
+    // detect available wheel event
+    support = "onwheel" in document.createElement("div") ? "wheel" : // Modern browsers support "wheel"
+              document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
+              "DOMMouseScroll"; // let's assume that remaining browsers are older Firefox
+
+    window.addWheelListener = function( elem, callback, useCapture ) {
+        _addWheelListener( elem, support, callback, useCapture );
+
+        // handle MozMousePixelScroll in older Firefox
+        if( support == "DOMMouseScroll" ) {
+            console.log("DOMMouseScroll");
+            _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
+        }
+    };
+
+    function _addWheelListener( elem, eventName, callback, useCapture ) {
+        elem[ _addEventListener ]( prefix + eventName, support == "wheel" ? callback : function( originalEvent ) {
+            !originalEvent && ( originalEvent = window.event );
+
+            // create a normalized event object
+            var event = {
+                // keep a ref to the original event object
+                originalEvent: originalEvent,
+                target: originalEvent.target || originalEvent.srcElement,
+                type: "wheel",
+                deltaMode: originalEvent.type == "MozMousePixelScroll" ? 0 : 1,
+                deltaX: 0,
+                deltaZ: 0,
+                preventDefault: function() {
+                    originalEvent.preventDefault ?
+                        originalEvent.preventDefault() :
+                        originalEvent.returnValue = false;
+                }
+            };
+            
+            // calculate deltaY (and deltaX) according to the event
+            if ( support == "mousewheel" ) {
+                event.deltaY = - 1/40 * originalEvent.wheelDelta;
+                // Webkit also support wheelDeltaX
+                originalEvent.wheelDeltaX && ( event.deltaX = - 1/40 * originalEvent.wheelDeltaX );
+            } else {
+                event.deltaY = originalEvent.detail;
+            }
+
+            // it's time to fire the callback
+            return callback( event );
+
+        }, useCapture || false );
+    }
+
+})(window,document);
+
+
 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -51,14 +120,15 @@ var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div"
     perspective = 3000, // corresponds to value for webkit perspective
     vanishingPoint = 19000,
     focusPoint = 1500,
-    dampConstant = 0.5, // 0.2
+    dampConstant = 1, // 0.2
     perspectiveOffset = 1000,
-    ticking = false;
+    ticking = false,
+    transformProp = Modernizr.prefixed('transform');
+    
     // 24000 1500
-window.addEventListener("mousewheel", function(e) {
-    // console.log(e);
-    wheelDelta += e.wheelDelta * dampConstant;
-    console.log("requesting Tick");
+addWheelListener(window, function(e) {
+    wheelDelta += e.deltaY * dampConstant;
+    // console.log("requesting Tick");
     requestTick();
 });
 
@@ -88,7 +158,7 @@ function update() {
                 f.style.opacity = 0;
             }
                 
-        f.style.webkitTransform = "translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
+        f.style[transformProp] = "translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
     
     });
     ticking = false;

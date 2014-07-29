@@ -1,4 +1,4 @@
-define(['var/rfa'], function(requestAnimationFrame) {
+define(['var/addWheelEventListener','var/rfa'], function(Modernizr,requestAnimationFrame) {
     
 var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div")),
     yTranslation = 0,
@@ -8,14 +8,15 @@ var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div"
     perspective = 3000, // corresponds to value for webkit perspective
     vanishingPoint = 19000,
     focusPoint = 1500,
-    dampConstant = 0.5, // 0.2
+    dampConstant = 1, // 0.2
     perspectiveOffset = 1000,
-    ticking = false;
+    ticking = false,
+    transformProp = Modernizr.prefixed('transform');
+    
     // 24000 1500
-window.addEventListener("mousewheel", function(e) {
-    // console.log(e);
-    wheelDelta += e.wheelDelta * dampConstant;
-    console.log("requesting Tick");
+addWheelListener(window, function(e) {
+    wheelDelta += e.deltaY * dampConstant;
+    // console.log("requesting Tick");
     requestTick();
 });
 
@@ -45,7 +46,7 @@ function update() {
                 f.style.opacity = 0;
             }
                 
-        f.style.webkitTransform = "translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
+        f.style[transformProp] = "translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
     
     });
     ticking = false;
