@@ -211,7 +211,7 @@ function calculateRotation(translateZ) {
 function calculateOpacity(z) {
 
     // normalize z relative to focus point
-    z = Math.abs(z) - focusPoint;
+    z = Math.abs(z) + focusPoint;
     // the further we're away the more transparent the slide gets
     return (z < vanishingPoint) ? 1 - (z / vanishingPoint): 0;
     

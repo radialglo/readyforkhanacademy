@@ -71,7 +71,7 @@ $xIncrement: 200px;
 
 // transition must be specified in this order, such that bourbon addes prefixes
 .animateTransform {
-    @include transition(transform 500ms $easeOutSine);
+    @include transition(transform 500ms $easeOutSine, opacity 500ms $easeOutSine);
 }
 
 .aspect-ratio {
