@@ -123,7 +123,7 @@ var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div"
     ticking = false, 
     transformProp = Modernizr.prefixed('transform'),
     
-    perspectiveOffset = 1500,
+    perspectiveOffset = 500, // 1500
     isMouseWheel = false,
     curIdx = 0,
     KEY_LEFT = 37,
