@@ -129,15 +129,23 @@ function update() {
         
         if (isMouseWheel && translateZ > focusPoint && translateZ <  perspective) {
             curIdx = i;
-            isMouseWheel = false;
         }
 
         rotateY = calculateRotation(translateZ);
+
+        // add rotation if needed for mouse/swipe events
+        if (translateZ > perspective) {
+            rotateY = 90;
+        }
 
         f.style.opacity = calculateOpacity(translateZ);
         f.style[transformProp] = "translate3d(0px , 0px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
          // f.style[transformProp] = "rotateY(" + rotateY + "deg) translate3d(" + (xIncrement) + "px ," + translateY + "px," + translateZ  + "px)";
     });
+
+    if (isMouseWheel) {
+        isMouseWheel = false;
+    }
     
     ticking = false;
 }
