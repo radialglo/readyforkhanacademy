@@ -69,8 +69,9 @@ $xIncrement: 200px;
    // height: $slideHeight;
 }
 
+// transition must be specified in this order, such that bourbon addes prefixes
 .animateTransform {
-    @include transition(500ms transform $easeOutSine);
+    @include transition(transform 500ms $easeOutSine);
 }
 
 .aspect-ratio {
