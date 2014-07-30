@@ -645,6 +645,13 @@ iframe {
   width: 60rem;
 }
 
+.animateTransform {
+  -webkit-transition: 500ms transform cubic-bezier(0.39, 0.575, 0.565, 1);
+  -moz-transition: 500ms transform cubic-bezier(0.39, 0.575, 0.565, 1);
+  -o-transition: 500ms transform cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: 500ms transform cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
 .aspect-ratio {
   position: relative;
   padding-bottom: 66.66667%;

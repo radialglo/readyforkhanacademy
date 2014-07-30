@@ -69,6 +69,10 @@ $xIncrement: 200px;
    // height: $slideHeight;
 }
 
+.animateTransform {
+    @include transition(500ms transform $easeOutSine);
+}
+
 .aspect-ratio {
   position: relative;
   // maintain aspect ratio

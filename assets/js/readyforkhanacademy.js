@@ -132,6 +132,8 @@ var frames = Array.prototype.slice.call(document.querySelectorAll("#world > div"
     ticking = false, 
     transformProp = Modernizr.prefixed('transform'),
     
+    perspectiveOffset = 1500,
+    isMouseWheel = false,
     curIdx = 0,
     KEY_LEFT = 37,
     KEY_RIGHT = 39;
@@ -147,32 +149,11 @@ var hammerTime = new Hammer.Manager(document.querySelector("#world"), {
 function _renderSlide() {
 
 
-    var translateZ,
-        rotateY;
-
     frames.forEach(function(f, i){
         f.classList.add("animateTransform");
     });
-    frames.forEach(function(f, i){
-
-        translateZ =  (curIdx - i) * perspective;
-        if (i >= curIdx) {
-
-            translateZ +=  focusPoint;
-
-            // update wheel delta so that user can also scroll
-            if (i === curIdx) {
-                wheelDelta = perspective * curIdx;
-            }
-        }
-
-
-        rotateY = calculateRotation(translateZ);
-
-        f.style.opacity = calculateOpacity(translateZ);
-        f.style[transformProp] = "translate3d(0px , 0px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
-  
-    });
+    wheelDelta = curIdx > 0 ? perspective * curIdx : 0;
+    requestTick();
 }
 
 function nextSlide() {
@@ -210,8 +191,7 @@ window.addEventListener("keyup", function(e) {
        
         nextSlide();
     }
-      console.log(curIdx);
-    console.log(e);
+    
 });
 
 
@@ -219,6 +199,7 @@ window.addEventListener("keyup", function(e) {
 addWheelListener(window, function(e) {
     wheelDelta += e.deltaY * dampConstant;
     // console.log("requesting Tick");
+    isMouseWheel = true;
     requestTick();
 });
 
@@ -247,13 +228,32 @@ function calculateOpacity(z) {
 }
 
 function update() {
-    frames.forEach(function(f, i) {
-        var translateZ = (focusPoint + (-perspective * i) + wheelDelta),
-            rotateY = calculateRotation(translateZ);
 
-        if (translateZ > focusPoint && translateZ <  perspective) {
-            curIdx = i;
+    var translateZ,
+        rotateY;
+
+    if (isMouseWheel) {
+        frames.forEach(function(f, i){
+            f.classList.remove("animateTransform");
+        });   
+    }
+
+
+    frames.forEach(function(f, i) {
+
+        translateZ =  (focusPoint + (-perspective * i) + wheelDelta);
+       
+        // add some additional offset if slide should be offScreen
+        if (i < curIdx) {
+            translateZ += perspectiveOffset;
         }
+        
+        if (isMouseWheel && translateZ > focusPoint && translateZ <  perspective) {
+            curIdx = i;
+            isMouseWheel = false;
+        }
+
+        rotateY = calculateRotation(translateZ);
 
         f.style.opacity = calculateOpacity(translateZ);
         f.style[transformProp] = "translate3d(0px , 0px," + translateZ  + "px) rotateY(" + rotateY + "deg)";
@@ -264,7 +264,7 @@ function update() {
 }
 
 if (Modernizr.csstransforms3d) {
-    requestAnimationFrame(update);
+    requestTick();
 }
 
 
