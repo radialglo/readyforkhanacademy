@@ -75,7 +75,8 @@ module.exports = function (grunt) {
                     "console": false,
                     "Hammer": false,
                     "Modernizr": false,
-                    "addWheelListener": false
+                    "addWheelListener": false,
+                    "SlidedeckView": false
                 }
             },
             all: {
