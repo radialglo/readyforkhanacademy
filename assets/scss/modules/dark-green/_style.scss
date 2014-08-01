@@ -13,4 +13,34 @@
     h1, h2 {
     	text-align: center;
     }
+
+    a {
+        color: yellow;
+        text-decoration: none;
+        position: relative;
+        @include transition(opacity 200ms ease);
+        opacity: 0.9;
+        // creates pseudo first child element
+        &::before {
+            position: absolute;
+            width: 100%;
+            background-color: yellow;
+            bottom: -.3em;
+            height: 1px;
+            content: "";
+            left: 0;
+            @include transform(scaleX(0));
+            @include transition(transform 300ms $easeCrazyOutBack);
+            visibility: hidden;
+        }
+        &:hover {
+            opacity: 1;
+            &::before {
+                @include transform(scaleX(1));
+                visibility: visible;
+                
+            }
+            
+        }
+    }
 }
