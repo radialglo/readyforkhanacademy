@@ -56,7 +56,8 @@ $easeCrazyOutBack: cubic-bezier(0.325, 0, 0.000, 1.650);
 
 @include exports('base') {
 
-$bgColor: #141518 !default;
+// $bgColor: #141518 !default;
+$bgColor: #fafafa !default;
 
 // include border and padding in addition to default content
 * {
