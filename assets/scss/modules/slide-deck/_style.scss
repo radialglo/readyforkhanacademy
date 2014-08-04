@@ -1,7 +1,7 @@
 @import "../../base/base";
 
 
-$slideCount: 10;
+$slideCount: 11;
 $slideWidth: rem-calc(960px);
 $slideHeight: rem-calc(640px);
 $slideHeightPerWidth: #{$slideHeight / $slideWidth * 100 + "%"};
@@ -71,7 +71,7 @@ $xIncrement: 200px;
 
 // transition must be specified in this order, such that bourbon addes prefixes
 .animateTransform {
-    @include transition(transform 500ms $easeOutSine, opacity 500ms $easeOutSine);
+    @include transition(transform 500ms $easeOutCubic, opacity 500ms $easeOutCubic);
 }
 
 .aspect-ratio {

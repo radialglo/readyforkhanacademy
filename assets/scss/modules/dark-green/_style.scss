@@ -1,7 +1,7 @@
 @import "../../base/base";
 
 .dark-green {
-	@include background-image( linear-gradient(45deg, #125758, #333) );
+    @include background-image( linear-gradient(45deg, #125758, #333) );
     color: #EFF;
     .content {
         position: absolute;
@@ -11,7 +11,7 @@
     }
 
     h1, h2 {
-    	text-align: center;
+        text-align: center;
     }
 
     a {
