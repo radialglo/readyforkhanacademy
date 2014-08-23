@@ -81,9 +81,9 @@ define([], function() {
                 particles[i].color = color;
          }
          */
-         ctx.fill = "black";
-         // ctx.clearRect(0, 0, canvasW, canvasH);
-         ctx.fillRect(0, 0, canvasW, canvasH)
+         // ctx.fillStyle = "black";
+         ctx.clearRect(0, 0, canvasW, canvasH);
+         // ctx.fillRect(0, 0, canvasW, canvasH)
          // add text shadows
          ctx.shadowColor = "#000";
          ctx.shadowBlur = "4";

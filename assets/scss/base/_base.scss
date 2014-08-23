@@ -91,6 +91,9 @@ iframe {
         font-size: 62.5%;
         // font-size: 86.5%;
     }
+    h1, h2 {
+        font-size: 2em;
+    }
 }
 
 @include mq-medium-up {

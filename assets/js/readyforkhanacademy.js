@@ -11,7 +11,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-06-31
+ * Date: 2014-07-23
  */
 (function(window, undefined) {
 
@@ -394,8 +394,9 @@ var SlidedeckView = function(el, slidesData) {
                 particles[i].color = color;
          }
          */
-
+         // ctx.fillStyle = "black";
          ctx.clearRect(0, 0, canvasW, canvasH);
+         // ctx.fillRect(0, 0, canvasW, canvasH)
          // add text shadows
          ctx.shadowColor = "#000";
          ctx.shadowBlur = "4";
@@ -480,6 +481,18 @@ var SlidedeckView = function(el, slidesData) {
     	},
         {
             el: slides[10],
+            render: null
+        },
+        {
+            el: slides[11],
+            render: null
+        },
+        {
+            el: slides[12],
+            render: null
+        },
+        {
+            el: slides[13],
             render: null
         }
     ]);

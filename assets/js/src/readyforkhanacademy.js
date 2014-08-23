@@ -46,6 +46,18 @@ define(['views/SlidedeckView', 'views/VideoSlideView'], function() {
         {
             el: slides[10],
             render: null
+        },
+        {
+            el: slides[11],
+            render: null
+        },
+        {
+            el: slides[12],
+            render: null
+        },
+        {
+            el: slides[13],
+            render: null
         }
     ]);
 });
