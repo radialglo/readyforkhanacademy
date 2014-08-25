@@ -11,9 +11,6 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-@import url(http://fonts.googleapis.com/css?family=Londrina+Sketch);
-@import url(http://fonts.googleapis.com/css?family=Sniglet:400,800);
-@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -467,6 +464,11 @@ th {
  *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
  *   }
  */
+/*
+@import url(http://fonts.googleapis.com/css?family=Londrina+Sketch);
+@import url(http://fonts.googleapis.com/css?family=Sniglet:400,800);
+@import url(http://fonts.googleapis.com/css?family=Oswald:400,700,300);
+*/
 @font-face {
   font-family: 'FontAwesome';
   src: url("/fonts/fontawesome-webfont.eot");
@@ -483,7 +485,12 @@ th {
   font-style: normal;
 }
 
-.type--londrian {
+.type--londrina {
+  font-family: 'Londrina Solid', cursive;
+  font-weight: bold;
+}
+
+.type--londrina-sketch {
   font-family: 'Londrina Sketch';
   font-weight: bold;
 }
