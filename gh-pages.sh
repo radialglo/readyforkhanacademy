@@ -21,7 +21,7 @@ git checkout -B $GH
 # git merge $M 
 rm -rf Procfile app.js package.json Gruntfile.js README.md node_modules views
 mv assets/* .
-# rmdir assets
+rm -rf scss
 git add --all .
 git commit -m "$DATE"
 git push --force $ORIGIN $GH
