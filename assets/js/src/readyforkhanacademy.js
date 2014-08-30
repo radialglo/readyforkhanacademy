@@ -1,5 +1,5 @@
  /* jshint strict: false */
-define(['views/SlidedeckView', 'views/VideoSlideView'], function() {
+define(['views/StartView', 'views/SlidedeckView', 'views/VideoSlideView'], function() {
     
     var slides = document.querySelectorAll(".slide");
     new SlidedeckView(document.querySelector("#world"), [

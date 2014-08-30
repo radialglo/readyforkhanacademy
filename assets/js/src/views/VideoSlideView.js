@@ -33,7 +33,8 @@ define([], function() {
          // data is a one dimensional array containing the data in the RGBA order, with integer values 0 and 255
          // we can check if the pixel was drawn if it has an alpha value greater than 0
          // console.log(imageData),
-
+         
+         /*
          var pixel,
             particles = [],
             colors = ["grey", "yellow", "teal", "lime", "magenta" , "red", "blue"],
@@ -70,17 +71,6 @@ define([], function() {
 
          var end = Math.floor(canvasW / columnGap / 5);
 
-         /*
-         for (var i = 0; i < particles.length; i++) {
-                if ((i % end) === 0) {
-                    // console.log(true);
-                    color = colors[Math.floor((Math.random() * 100))  % colors.length];
-                } else {
-                    // console.log(false);
-                }
-                particles[i].color = color;
-         }
-         */
          // ctx.fillStyle = "black";
          ctx.clearRect(0, 0, canvasW, canvasH);
          // ctx.fillRect(0, 0, canvasW, canvasH)
@@ -104,20 +94,14 @@ define([], function() {
             ctx.moveTo( x, y - height / 2 );
 
             ctx.lineTo(x + (2 + Math.random() * width), y - height / 2);
-            /*
-            ctx.lineTo( x + width / 2, y - height / 4 );
-            ctx.lineTo( x + width / 2, y + height / 4 );
-            ctx.lineTo( x, y + height / 2 );
-            ctx.lineTo( x - width / 2, y + height / 4 );
-            ctx.lineTo( x - width / 2, y - height / 4 );
-            ctx.lineTo( x, y - height / 2 );
-            */
+        
 
             ctx.closePath();
             ctx.stroke();
-            // ctx.fill();
+           
          }
             requestAnimationFrame(draw);
          }
          requestAnimationFrame(draw);
+         */
 });

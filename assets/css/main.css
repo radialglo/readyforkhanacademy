@@ -781,6 +781,215 @@ iframe {
  * Compass CSS3
  * @see http://compass-style.org/reference/compass/css3/
  */
+#start-leaf-container {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  width: 50px;
+  position: absolute;
+  z-index: 1000;
+}
+
+.leaf-aspect-ratio {
+  position: relative;
+  height: 0;
+  padding-bottom: 112.9502%;
+}
+
+.start-leaf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: FontAwesome;
+  font-size: 67px;
+  opacity: 0;
+  color: #EEF;
+  -webkit-transform: translate3d(-2px, -2px, 0) scale(1);
+  -moz-transform: translate3d(-2px, -2px, 0) scale(1);
+  -ms-transform: translate3d(-2px, -2px, 0) scale(1);
+  -o-transform: translate3d(-2px, -2px, 0) scale(1);
+  transform: translate3d(-2px, -2px, 0) scale(1);
+}
+
+#leaf-trace {
+  width: 100%;
+  height: 100%;
+  stroke: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.start-screen__panel {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.start-screen__top {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+.start-screen__top > .start-screen__bg {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  -o-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+.start-screen__bottom {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  -o-transform: translateY(50%);
+  transform: translateY(50%);
+  z-index: 2;
+}
+.start-screen__bottom > .start-screen__bg {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.start-screen__bg {
+  background-image: -webkit-linear-gradient(45deg, #125758, #ffcc33);
+  background-image: -moz-linear-gradient(45deg, #125758, #ffcc33);
+  background-image: -o-linear-gradient(45deg, #125758, #ffcc33);
+  background-image: linear-gradient(45deg, #125758, #ffcc33);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.slideUp {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+  transition: all 500ms cubic-bezier(1, 0, 0, 1);
+  opacity: 0;
+}
+
+.slideDown {
+  -webkit-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+  transition: all 500ms cubic-bezier(1, 0, 0, 1);
+  opacity: 0;
+}
+
+.hide {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.scaleDown {
+  -webkit-transform: translate3d(-2px, -2px, 0) scale(0);
+  -moz-transform: translate3d(-2px, -2px, 0) scale(0);
+  -ms-transform: translate3d(-2px, -2px, 0) scale(0);
+  -o-transform: translate3d(-2px, -2px, 0) scale(0);
+  transform: translate3d(-2px, -2px, 0) scale(0);
+  transition: all 500ms cubic-bezier(0.52, -0.6, 0.735, 0.045);
+}
+
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
 #hello-ka {
   background-image: -webkit-linear-gradient(45deg, #125758, #333333);
   background-image: -moz-linear-gradient(45deg, #125758, #333333);

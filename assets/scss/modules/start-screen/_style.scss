@@ -1,0 +1,120 @@
+@import "../../base/base";
+
+// these values are based off the svg  viewBox
+$leafWidth: 1291.1;
+$leafHeight: 1458.3;
+$leafRatio: $leafHeight / $leafWidth;
+
+#start-leaf-container {
+    top: 50%;
+    left: 50%;
+    @include transform(translate3d(-50%, -50%, 0));
+    width: 50px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.leaf-aspect-ratio {
+    position: relative;
+    height: 0;
+    padding-bottom: #{$leafRatio * 100 + "%"};
+}
+
+.start-leaf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: FontAwesome;
+    font-size: 67px;
+    opacity: 0;
+    color: #EEF;
+    @include transform(translate3d(-2px,-2px,0)
+scale(1));
+   
+}
+
+#leaf-trace {
+    width: 100%;
+    height: 100%;
+    stroke: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    // there is an issue with a small border
+    // appearing on ipad/iphone simulator between panels
+    // can add background image to make background appear seamless
+    // @include background-image( linear-gradient(45deg, #125758, #ffcc33) );
+}
+
+.start-screen__panel {
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.start-screen__top {
+    @include transform(translateY(-50%));
+    & > .start-screen__bg {
+        @include transform(translateY(50%));
+    }
+    z-index: 1;
+}
+.start-screen__bottom {
+    @include transform(translateY(50%));
+    & > .start-screen__bg {
+        @include transform(translateY(-50%));
+    }
+    z-index: 2;
+}
+
+.start-screen__bg {
+    @include background-image( linear-gradient(45deg, #125758, #ffcc33) );
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.slideUp {
+    @include transform(translateY(-100%));
+    transition: all 500ms $easeInOutExpo;
+    opacity: 0;
+}
+
+.slideDown {
+    @include transform(translateY(100%));
+    // $easeInOutExpo;
+    transition: all 500ms $easeInOutExpo;
+    opacity: 0;
+}
+
+.hide {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.scaleDown {
+    @include transform(translate3d(-2px,-2px,0) scale(0));
+    // custom easeInBack
+    transition: all 500ms cubic-bezier(0.520, -0.600, 0.735, 0.045);
+}
+
