@@ -13,11 +13,11 @@ module.exports = function(grunt) {
         // date
         date = new Date(),
         year = date.getFullYear(),
-        month = ("" + date.getMonth()).replace(/^(\d)$/, "0$1"),
+        // normalize to 1 - 12
+        month = ("" + (date.getMonth() + 1)).replace(/^(\d)$/, "0$1"),
         day = ("" + date.getDate()).replace(/^(\d)$/, "0$1"),
         dateString = [year, month, day].join("-"); 
-        // normalize to 1 - 12
-        month += 1;
+        
 
     /**
      * @function convert
