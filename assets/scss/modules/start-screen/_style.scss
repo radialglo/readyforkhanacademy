@@ -33,6 +33,11 @@ scale(1));
    
 }
 
+#leaf-trace__left,
+#leaf-trace__right {
+    visibility: hidden;
+}
+
 #leaf-trace {
     width: 100%;
     height: 100%;

@@ -21,6 +21,7 @@ var startScreen = document.querySelector("#start-screen"),
         // Trigger a layout so styles are calculated & the browser
         // picks up the starting position before animating
         path.getBoundingClientRect();
+        path.style.visibility = "visible";
         // Define our transition
         path.style.transition = path.style.WebkitTransition =
         'stroke-dashoffset 1.5s ease-in-out';
