@@ -1,11 +1,11 @@
-define([], function() {
-  var canvas = document.querySelector("#videoCanvas"),
+define(['var/querySelector'], function() {
+  var canvas = $("#videoCanvas"),
             ctx = canvas.getContext("2d");
 
         var bgCanvas = document.createElement("canvas");
         var bgCtx = bgCanvas.getContext("2d"),
-            canvasW = document.querySelector("#video .content-wrapper").offsetWidth,
-            canvasH = document.querySelector("#video .content-wrapper").offsetHeight,
+            canvasW = $("#video .content-wrapper").offsetWidth,
+            canvasH = $("#video .content-wrapper").offsetHeight,
             keyword = "V I D E O",
             imageData,
             rowGap = 10,

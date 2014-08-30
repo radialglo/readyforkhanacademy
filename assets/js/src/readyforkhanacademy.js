@@ -1,8 +1,8 @@
  /* jshint strict: false */
-define(['views/StartView', 'views/SlidedeckView', 'views/VideoSlideView'], function() {
+define(['var/querySelector','views/StartView', 'views/SlidedeckView', 'views/VideoSlideView'], function() {
     
-    var slides = document.querySelectorAll(".slide");
-    new SlidedeckView(document.querySelector("#world"), [
+    var slides = $$(".slide");
+    new SlidedeckView($("#world"), [
     	{
     		el: slides[0],
     		render: null

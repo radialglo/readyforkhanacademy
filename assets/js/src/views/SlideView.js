@@ -1,4 +1,4 @@
-define([], function(){
+define(['var/querySelector'], function(){
 	var transformProp = Modernizr.prefixed('transform');
 
 	var SlideView = function(opts) {

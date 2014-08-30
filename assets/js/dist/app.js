@@ -8,13 +8,19 @@
 
     "use strict";
 
-var startScreen = document.querySelector("#start-screen"),
-    leaf = document.querySelector(".start-leaf"),
-    leafTrace = document.querySelector("#leaf-trace"),
-    leafLeftTrace = document.querySelector('#leaf-trace__left'),
-    leafRightTrace = document.querySelector('#leaf-trace__right'),
-    topPanel = document.querySelector(".start-screen__top"),
-    bottomPanel = document.querySelector(".start-screen__bottom"),
+
+var $ = document.querySelector.bind(document),
+	$$ = document.querySelectorAll.bind(document);
+
+
+
+var startScreen = $("#start-screen"),
+    leaf = $(".start-leaf"),
+    leafTrace = $("#leaf-trace"),
+    leafLeftTrace = $('#leaf-trace__left'),
+    leafRightTrace = $('#leaf-trace__right'),
+    topPanel = $(".start-screen__top"),
+    bottomPanel = $(".start-screen__bottom"),
     renderTrace = function(path) {
     /**
      *  @see http://jakearchibald.com/2013/animated-line-drawing-svg/
@@ -49,7 +55,7 @@ setTimeout(function(){
         leaf.classList.add("scaleDown");
         setTimeout(function() {
             // may possibly need to make panels look seamless
-            // document.querySelector("#start-screen").style.background = "none";
+            // $("#start-screen").style.background = "none";
             topPanel.classList.add("slideUp");
             bottomPanel.classList.add("slideDown");
             setTimeout(function() {
@@ -364,13 +370,13 @@ var SlidedeckView = function(el, slidesData) {
 
 
 
-  var canvas = document.querySelector("#videoCanvas"),
+  var canvas = $("#videoCanvas"),
             ctx = canvas.getContext("2d");
 
         var bgCanvas = document.createElement("canvas");
         var bgCtx = bgCanvas.getContext("2d"),
-            canvasW = document.querySelector("#video .content-wrapper").offsetWidth,
-            canvasH = document.querySelector("#video .content-wrapper").offsetHeight,
+            canvasW = $("#video .content-wrapper").offsetWidth,
+            canvasH = $("#video .content-wrapper").offsetHeight,
             keyword = "V I D E O",
             imageData,
             rowGap = 10,
@@ -473,8 +479,8 @@ var SlidedeckView = function(el, slidesData) {
  /* jshint strict: false */
 
     
-    var slides = document.querySelectorAll(".slide");
-    new SlidedeckView(document.querySelector("#world"), [
+    var slides = $$(".slide");
+    new SlidedeckView($("#world"), [
     	{
     		el: slides[0],
     		render: null
