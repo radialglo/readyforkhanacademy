@@ -1,10 +1,41 @@
-  <h1>
-  	I'm ready.
-  </h1>
-     
+ <div id="khan-tree-container">
+        <div id="khan-tree">
+            <svg id="khan-hand" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 716.66 1057.8" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                <path id="path3097" d="m333.1,1051.8c-43.335-0.02-105.66,1.0467-136.28-1.6784,20.153-59.631,12.82-127.61,13.835-189.21,0.26859-14.549-0.34024-31.957-4.8512-44.505-8.6578-24.083-26.16-41.323-40.63-63.67-9.1538-14.136-23.032-39.326-26.418-56.198-19.827-67.353-27.831-125.32-42.209-193.76-20.567-75.844-39.147-153.66-80.896-221.25-34.145-36.64,20.245-83.897,47.096-37.306,39.567,51.921,61.069,117.92,110.52,162.55,19.519-23.254,8.1137-60.673,0.65813-92.894-3.3493-14.474-7.9622-49.338-6.5558-62.37-7.1321-58.423-10.69-92.327-13.576-151.12,16.052-42.93,43.561-26.771,56.223,2.0318,2.2691,5.1614,3.3176,9.7022,5.7836,18.498,2.7476,9.8002,6.7574,23.887,5.8557,29.36,6.0794,57.963,26.69,84.939,30.962,143.3-1.7968,10.086,6.3598,38.241,12.54,47.595,13.087,19.804,33.732,29.221,31.063-8.7865,8.1647-91.002,13.529-182.19,19.036-273.3-10.443-53.123,71.184-81.083,73.317-17.357,0.61727,93.019-1.9731,186.49-1.2561,279.59-6.3587,28.807,20.38,63.762,27.951,16.89,22.781-56.32,50.54-110.27,77.541-164.31,7.7556-34.137,49.458-107.77,85.206-60.437,10.146,45.494-21.545,87.699-32.701,130.36-19.727,59.796-43.11,118.6-58.694,179.59-6.4131,39.486-10.036,88.594,19.77,119.44,48.921,6.7596,57.123-63.946,96.51-81.125,30.53-15.657,106.73-35.818,108.68,14.748-36.416,28.748-78.664,53.26-109,90.041-36.478,35.553-37.268,97.634-68.29,134.5-33.838,62.941-74.32,75.788-89.763,127.19-1.8422,49.55-8.2923,99.929-0.8906,149.22,1.5548,10.354,5.7816,30.962,8.73,41.202,3.1995,10.489,9.5359,24.22,9.9154,29.901,0.1811,2.7095-20.106,0.018-19.447,2.8624,0,0-11.531-2.3634-31.077-0.7153-31.561,0.738-47.099-0.1182-78.654,1.1255z" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="10" />
+            </svg>
+            <span class="leaf l1 r1">&bullet;</span>
+            <span class="leaf l2 r1">&bullet;</span>
+            <span class="leaf l3 r1">&bullet;</span>
+            <span class="leaf l4 r1">&bullet;</span>
+            <span class="leaf l5 r1">&bullet;</span>
+            <span class="leaf l6 r1">&bullet;</span>
+            <span class="leaf l7 r1">&bullet;</span>
+            <span class="leaf l8 r1">&bullet;</span>
+            <span class="leaf l9 r1">&bullet;</span>
+            <span class="leaf l10 r1">&bullet;</span>
+            <span class="leaf l11 r2">&bullet;</span>
+            <span class="leaf l12 r2">&bullet;</span>
+            <span class="leaf l13 r2">&bullet;</span>
+            <span class="leaf l14 r2">&bullet;</span>
+            <span class="leaf l15 r2">&bullet;</span>
+            <span class="leaf l16 r2">&bullet;</span>
+            <span class="leaf l17 r2">&bullet;</span>
+            <span class="leaf l18 r2">&bullet;</span>
+            <span class="leaf l19 r2">&bullet;</span>
+            <span class="leaf l20 r2">&bullet;</span>
+            <span class="leaf l21 r2">&bullet;</span>
+            <span class="leaf l22 r3">&bullet;</span>
+            <span class="leaf l23 r3">&bullet;</span>
+            <span id="ready-text">
+            I'm ready !
+            </span>
+        </div>
+    </div>
 
   <script>
     window.addEventListener("load",function() {
-      document.querySelector("#ready").classList.add("render");
+         // first trigger a reflow
+	    document.querySelector("#khan-tree").getBoundingClientRect();
+		document.querySelector("#khan-tree").classList.add("render");
     });
   </script>
