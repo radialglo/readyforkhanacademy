@@ -72,11 +72,20 @@ module.exports = function (grunt) {
                     "module": false,
                     "require": false,
                     "define": false,
+
                     "console": false,
+
+                    // libraries
                     "Hammer": false,
                     "Modernizr": false,
+
+                    // other
                     "addWheelListener": false,
                     "SlidedeckView": false,
+                    "SlideView": false,
+                    "AaronTropeSlideView": false,
+                    "KeylightSlideView": false,
+                    "HelloRacerSlideView": false,
                     "$": false,
                     "$$": false
                 }

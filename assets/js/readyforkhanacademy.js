@@ -11,7 +11,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-08-30
+ * Date: 2014-09-02
  */
 (function(window, undefined) {
 
@@ -84,25 +84,188 @@ setTimeout(function(){
 
 
 
-	var transformProp = Modernizr.prefixed('transform');
+    var transformProp = Modernizr.prefixed('transform');
 
-	var SlideView = function(opts) {
-		this.el = opts.el;
-	};
+    var SlideView = function(opts) {
+        this.el = opts.el;
+    };
 
-	SlideView.prototype.update = function (data) {
-		var style = this.el.style;
-		style.opacity =  data.opacity;
+    SlideView.prototype.update = function (data) {
+        var style = this.el.style;
+        style.opacity =  data.opacity;
         style[transformProp] = "translate3d(0px , 0px," + data.translateZ  + "px) rotateY(" + data.rotateY + "deg)";
-	};
+    };
 
-	SlideView.prototype.enableAnimation = function () {
-		this.el.classList.add("animateTransform");
-	};
+    SlideView.prototype.enableAnimation = function () {
+        this.el.classList.add("animateTransform");
+    };
 
-	SlideView.prototype.disableAnimation = function() {
-		this.el.classList.remove("animateTransform");
-	};
+    SlideView.prototype.disableAnimation = function() {
+        this.el.classList.remove("animateTransform");
+    };
+
+
+
+    var IframeSlideView = function(opts) {
+
+        SlideView.apply(this, arguments);
+        var iframe = document.createElement("iframe");
+        
+        iframe.src = "about:blank";
+        /*
+        consider adding a load event
+        iframe.onload = function() {
+        };
+        */
+        this.iframe = iframe;
+        this.src = opts.src;
+        this.container = this.el.querySelector(".content--iframe");
+
+        this.container.appendChild(iframe);
+    };
+
+    IframeSlideView.prototype = Object.create(SlideView.prototype);
+    IframeSlideView.prototype.constructor = IframeSlideView;
+
+    IframeSlideView.prototype.load = function() {
+        this.iframe.src = this.src;
+    };
+
+    IframeSlideView.prototype.destroy = function() {
+        this.iframe.src = "about:blank";
+    };
+
+
+
+  var canvas = $("#videoCanvas"),
+            ctx = canvas.getContext("2d");
+
+        var bgCanvas = document.createElement("canvas");
+        var bgCtx = bgCanvas.getContext("2d"),
+            canvasW = $("#video .content-wrapper").offsetWidth,
+            canvasH = $("#video .content-wrapper").offsetHeight,
+            keyword = "V I D E O",
+            imageData,
+            rowGap = 10,
+            columnGap = 10;
+
+         canvas.width = canvasW;
+         canvas.height = canvasH;
+         bgCanvas.width = canvasW;
+         bgCanvas.height = canvasH;
+         // rem works
+         /*
+         bgCtx.font = "200px 'Arial'";
+         bgCtx.font= '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif';
+         */
+         // bgCtx.font = "bold 200px Oswald ";
+         bgCtx.font = "125px bold Oswald ";
+         //Fill the keyword text onto the bgCanvas.
+         var textMetrics = bgCtx.measureText(keyword);
+         console.log(textMetrics);
+         // draw text relative to its vertical middle
+         bgCtx.textBaseline = "middle";
+         bgCtx.fillText(keyword, ( canvasW / 2 ) - ( Math.round( textMetrics.width /2 ) ) , (canvasH / 2));
+         imageData = bgCtx.getImageData(0, 0, canvasW, canvasH).data;
+         // https://github.com/kennethcachia/Shape-Shifter/blob/master/scripts/shape-builder.js
+         // data is a one dimensional array containing the data in the RGBA order, with integer values 0 and 255
+         // we can check if the pixel was drawn if it has an alpha value greater than 0
+         // console.log(imageData),
+         
+         /*
+         var pixel,
+            particles = [],
+            colors = ["grey", "yellow", "teal", "lime", "magenta" , "red", "blue"],
+            // colors = ["#4387fd", "#125758", "#01a2ff", "#0cf"],
+            color;
+         for (var height = 0; height < canvasH; height += rowGap) {
+             // color = colors[Math.floor((Math.random() * 100))  % colors.length];
+            color = colors[(height / rowGap)  % colors.length];
+            for (var width = 0; width < canvasW; width += columnGap) {
+
+                // get the alpha value
+                var index = ((width + (height * canvasW)) * 4) - 1;
+                pixel = imageData[index];
+                console.log(index);
+                console.log(pixel);
+                if (pixel > 0) {
+                    particles.push({
+                        color: color,
+                        x: width,
+                        y: height
+                    });
+                }
+
+            }
+         }
+
+        // document.body.appendChild(bgCanvas);
+
+         console.log(particles);
+
+         var draw = function() {
+
+         // color = colors[Math.floor((Math.random() * 100))  % colors.length];
+
+         var end = Math.floor(canvasW / columnGap / 5);
+
+         // ctx.fillStyle = "black";
+         ctx.clearRect(0, 0, canvasW, canvasH);
+         // ctx.fillRect(0, 0, canvasW, canvasH)
+         // add text shadows
+         ctx.shadowColor = "#000";
+         ctx.shadowBlur = "4";
+         // draw
+         var p,x,y;
+         ctx.lineWidth = 1;
+         for (var i = 0; i < particles.length; i++) {
+
+            var width   = columnGap - 2,
+                height  = rowGap;
+            p = particles[i];
+            x = p.x;
+            y = p.y;
+            ctx.fillStyle = p.color;
+            ctx.strokeStyle = p.color;
+
+            ctx.beginPath();
+            ctx.moveTo( x, y - height / 2 );
+
+            ctx.lineTo(x + (2 + Math.random() * width), y - height / 2);
+        
+
+            ctx.closePath();
+            ctx.stroke();
+           
+         }
+            requestAnimationFrame(draw);
+         }
+         requestAnimationFrame(draw);
+         */
+
+
+    var KeylightSlideView = new IframeSlideView({
+        el: $("#sound-viz"),
+        src: "http://hakim.se/experiments/html5/keylight/03"
+    });
+
+    window.KeylightSlideView = KeylightSlideView;
+
+
+    var AaronTropeSlideView = new IframeSlideView({
+        el: $("#aaron-trope"),
+        src: "http://www.aaronkoblin.com/Aaronetrope/"
+    });
+
+    window.AaronTropeSlideView = AaronTropeSlideView;
+
+
+    var HelloRacerSlideView = new IframeSlideView({
+        el: $("#graphics"),
+        src: "http://helloracer.com/webgl/"
+    });
+
+    window.HelloRacerSlideView = HelloRacerSlideView;
 
 // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
 
@@ -210,10 +373,10 @@ setTimeout(function(){
  /* jshint strict: false */
 
 
-var SlidedeckView = function(el, slidesData) {
+var SlidedeckView = function(el, slides) {
  
-    var frames = [],
-        lastFrameIndex = slidesData.length - 1,
+    var frames = slides,
+        lastFrameIndex = frames.length - 1,
         wheelDelta = 0,
         perspective = 3000, // corresponds to value for webkit perspective
         vanishingPoint = 19000,
@@ -226,11 +389,6 @@ var SlidedeckView = function(el, slidesData) {
         curIdx = 0,
         KEY_LEFT = 37,
         KEY_RIGHT = 39;
-
-    slidesData.forEach(function(slideOptions){
-        frames.push(new SlideView(slideOptions));
-    });
-
 
     var hammerTime = new Hammer.Manager(el, {
         recognizers: [
@@ -378,174 +536,60 @@ var SlidedeckView = function(el, slidesData) {
 
 
 
-
-  var canvas = $("#videoCanvas"),
-            ctx = canvas.getContext("2d");
-
-        var bgCanvas = document.createElement("canvas");
-        var bgCtx = bgCanvas.getContext("2d"),
-            canvasW = $("#video .content-wrapper").offsetWidth,
-            canvasH = $("#video .content-wrapper").offsetHeight,
-            keyword = "V I D E O",
-            imageData,
-            rowGap = 10,
-            columnGap = 10;
-
-         canvas.width = canvasW;
-         canvas.height = canvasH;
-         bgCanvas.width = canvasW;
-         bgCanvas.height = canvasH;
-         // rem works
-         /*
-         bgCtx.font = "200px 'Arial'";
-         bgCtx.font= '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif';
-         */
-         // bgCtx.font = "bold 200px Oswald ";
-         bgCtx.font = "125px bold Oswald ";
-         //Fill the keyword text onto the bgCanvas.
-         var textMetrics = bgCtx.measureText(keyword);
-         console.log(textMetrics);
-         // draw text relative to its vertical middle
-         bgCtx.textBaseline = "middle";
-         bgCtx.fillText(keyword, ( canvasW / 2 ) - ( Math.round( textMetrics.width /2 ) ) , (canvasH / 2));
-         imageData = bgCtx.getImageData(0, 0, canvasW, canvasH).data;
-         // https://github.com/kennethcachia/Shape-Shifter/blob/master/scripts/shape-builder.js
-         // data is a one dimensional array containing the data in the RGBA order, with integer values 0 and 255
-         // we can check if the pixel was drawn if it has an alpha value greater than 0
-         // console.log(imageData),
-         
-         /*
-         var pixel,
-            particles = [],
-            colors = ["grey", "yellow", "teal", "lime", "magenta" , "red", "blue"],
-            // colors = ["#4387fd", "#125758", "#01a2ff", "#0cf"],
-            color;
-         for (var height = 0; height < canvasH; height += rowGap) {
-             // color = colors[Math.floor((Math.random() * 100))  % colors.length];
-            color = colors[(height / rowGap)  % colors.length];
-            for (var width = 0; width < canvasW; width += columnGap) {
-
-                // get the alpha value
-                var index = ((width + (height * canvasW)) * 4) - 1;
-                pixel = imageData[index];
-                console.log(index);
-                console.log(pixel);
-                if (pixel > 0) {
-                    particles.push({
-                        color: color,
-                        x: width,
-                        y: height
-                    });
-                }
-
-            }
-         }
-
-        // document.body.appendChild(bgCanvas);
-
-         console.log(particles);
-
-         var draw = function() {
-
-         // color = colors[Math.floor((Math.random() * 100))  % colors.length];
-
-         var end = Math.floor(canvasW / columnGap / 5);
-
-         // ctx.fillStyle = "black";
-         ctx.clearRect(0, 0, canvasW, canvasH);
-         // ctx.fillRect(0, 0, canvasW, canvasH)
-         // add text shadows
-         ctx.shadowColor = "#000";
-         ctx.shadowBlur = "4";
-         // draw
-         var p,x,y;
-         ctx.lineWidth = 1;
-         for (var i = 0; i < particles.length; i++) {
-
-            var width   = columnGap - 2,
-                height  = rowGap;
-            p = particles[i];
-            x = p.x;
-            y = p.y;
-            ctx.fillStyle = p.color;
-            ctx.strokeStyle = p.color;
-
-            ctx.beginPath();
-            ctx.moveTo( x, y - height / 2 );
-
-            ctx.lineTo(x + (2 + Math.random() * width), y - height / 2);
-        
-
-            ctx.closePath();
-            ctx.stroke();
-           
-         }
-            requestAnimationFrame(draw);
-         }
-         requestAnimationFrame(draw);
-         */
-
  /* jshint strict: false */
 
-    
     var slides = $$(".slide");
     new SlidedeckView($("#world"), [
-    	{
-    		el: slides[0],
-    		render: null
-    	},
-    	{
-    		el: slides[1],
-    		render: null
-    	},
-    	{
-    		el: slides[2],
-    		render: null
-    	},
-    	{
-    		el: slides[3],
-    		render: null
-    	},
-    	{
-    		el: slides[4],
-    		render: null
-    	},
-    	{
-    		el: slides[5],
-    		render: null
-    	},
-    	{
-    		el: slides[6],
-    		render: null
-    	},
-    	{
-    		el: slides[7],
-    		render: null
-    	},
-    	{
-    		el: slides[8],
-    		render: null
-    	},
-    	{
-    		el: slides[9],
-    		render: null
-    	},
-        {
+        // Hello Khan Academy
+        new SlideView({
+            el: slides[0],
+        }),
+        // What
+        new SlideView({
+            el: slides[1],
+        }),
+        // Specifics
+        new SlideView({
+            el: slides[2],
+        }),
+        // Research
+        new SlideView({
+            el: slides[3],
+        }),
+        // HTML5 Expansions
+        new SlideView({
+            el: slides[4],
+        }),
+        // Sound Visualization
+        KeylightSlideView,
+        // Chrome Racer
+        new SlideView({
+            el: slides[6],
+        }),
+        // Video Introduction
+        new SlideView({
+            el: slides[7],
+        }),
+        // Aaron Trope
+        AaronTropeSlideView,
+        // Hello Racer
+        HelloRacerSlideView,
+        // Visualizing Algorithms
+        new SlideView({
             el: slides[10],
-            render: null
-        },
-        {
+        }),
+        // Enable
+        new SlideView({
             el: slides[11],
-            render: null
-        },
-        {
+        }),
+        // Anthony Su
+        new SlideView({
             el: slides[12],
-            render: null
-        },
-        {
+        }),
+        // I'm Ready
+        new SlideView({
             el: slides[13],
-            render: null
-        }
+        })
     ]);
 
 })(this);

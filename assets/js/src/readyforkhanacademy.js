@@ -1,63 +1,61 @@
  /* jshint strict: false */
-define(['var/querySelector','views/StartView', 'views/SlidedeckView', 'views/VideoSlideView'], function() {
-    
+define(['var/querySelector','views/StartView', 'views/SlideView', 'views/IframeSlideView', 'views/VideoSlideView', 
+'views/slides/KeylightSlideView',
+'views/slides/AaronTropeSlideView',
+'views/slides/HelloRacerSlideView',
+'views/SlidedeckView'],
+function() {
     var slides = $$(".slide");
     new SlidedeckView($("#world"), [
-    	{
-    		el: slides[0],
-    		render: null
-    	},
-    	{
-    		el: slides[1],
-    		render: null
-    	},
-    	{
-    		el: slides[2],
-    		render: null
-    	},
-    	{
-    		el: slides[3],
-    		render: null
-    	},
-    	{
-    		el: slides[4],
-    		render: null
-    	},
-    	{
-    		el: slides[5],
-    		render: null
-    	},
-    	{
-    		el: slides[6],
-    		render: null
-    	},
-    	{
-    		el: slides[7],
-    		render: null
-    	},
-    	{
-    		el: slides[8],
-    		render: null
-    	},
-    	{
-    		el: slides[9],
-    		render: null
-    	},
-        {
+        // Hello Khan Academy
+        new SlideView({
+            el: slides[0],
+        }),
+        // What
+        new SlideView({
+            el: slides[1],
+        }),
+        // Specifics
+        new SlideView({
+            el: slides[2],
+        }),
+        // Research
+        new SlideView({
+            el: slides[3],
+        }),
+        // HTML5 Expansions
+        new SlideView({
+            el: slides[4],
+        }),
+        // Sound Visualization
+        KeylightSlideView,
+        // Chrome Racer
+        new SlideView({
+            el: slides[6],
+        }),
+        // Video Introduction
+        new SlideView({
+            el: slides[7],
+        }),
+        // Aaron Trope
+        AaronTropeSlideView,
+        // Hello Racer
+        HelloRacerSlideView,
+        // Visualizing Algorithms
+        new SlideView({
             el: slides[10],
-            render: null
-        },
-        {
+        }),
+        // Enable
+        new SlideView({
             el: slides[11],
-            render: null
-        },
-        {
+        }),
+        // Anthony Su
+        new SlideView({
             el: slides[12],
-            render: null
-        },
-        {
+        }),
+        // I'm Ready
+        new SlideView({
             el: slides[13],
-            render: null
-        }
+        })
     ]);
 });

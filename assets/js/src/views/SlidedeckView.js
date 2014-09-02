@@ -1,10 +1,10 @@
  /* jshint strict: false */
-define(['views/SlideView', 'var/addWheelListener','var/rfa'], function() {
+define(['var/addWheelListener','var/rfa'], function() {
 
-var SlidedeckView = function(el, slidesData) {
+var SlidedeckView = function(el, slides) {
  
-    var frames = [],
-        lastFrameIndex = slidesData.length - 1,
+    var frames = slides,
+        lastFrameIndex = frames.length - 1,
         wheelDelta = 0,
         perspective = 3000, // corresponds to value for webkit perspective
         vanishingPoint = 19000,
@@ -17,11 +17,6 @@ var SlidedeckView = function(el, slidesData) {
         curIdx = 0,
         KEY_LEFT = 37,
         KEY_RIGHT = 39;
-
-    slidesData.forEach(function(slideOptions){
-        frames.push(new SlideView(slideOptions));
-    });
-
 
     var hammerTime = new Hammer.Manager(el, {
         recognizers: [
