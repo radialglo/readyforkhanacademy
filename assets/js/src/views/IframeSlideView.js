@@ -1,10 +1,13 @@
 define(['var/querySelector','views/SlideView.js'], function(){
 
+    /**
+     * @class IframeSlideView
+     * @desc SlideView for managing content heavy iframes
+     */
     var IframeSlideView = function(opts) {
 
         SlideView.apply(this, arguments);
         var iframe = document.createElement("iframe");
-        
         iframe.src = "about:blank";
         /*
         consider adding a load event
@@ -21,10 +24,18 @@ define(['var/querySelector','views/SlideView.js'], function(){
     IframeSlideView.prototype = Object.create(SlideView.prototype);
     IframeSlideView.prototype.constructor = IframeSlideView;
 
+    /**
+     * @method load
+     * @desc loads iframe source
+     */
     IframeSlideView.prototype.load = function() {
         this.iframe.src = this.src;
     };
 
+    /**
+     * @method destroy
+     * @desc clears iframe by adding blank page
+     */
     IframeSlideView.prototype.destroy = function() {
         this.iframe.src = "about:blank";
     };

@@ -86,31 +86,50 @@ setTimeout(function(){
 
     var transformProp = Modernizr.prefixed('transform');
 
+    /**
+     * @class SlideView
+     * @desc View for slides with static content
+     */
     var SlideView = function(opts) {
         this.el = opts.el;
     };
 
+    /**
+     * @method update
+     * @desc updates slide position
+     */
     SlideView.prototype.update = function (data) {
         var style = this.el.style;
         style.opacity =  data.opacity;
         style[transformProp] = "translate3d(0px , 0px," + data.translateZ  + "px) rotateY(" + data.rotateY + "deg)";
     };
 
+    /**
+     * @method enableAnimation
+     * adds class that enables smooth transitioning via CSS
+     */
     SlideView.prototype.enableAnimation = function () {
         this.el.classList.add("animateTransform");
     };
 
+    /**
+     * @method disableAnimation
+     * removes class that enables smooth transitioning
+     */
     SlideView.prototype.disableAnimation = function() {
         this.el.classList.remove("animateTransform");
     };
 
 
 
+    /**
+     * @class IframeSlideView
+     * @desc SlideView for managing content heavy iframes
+     */
     var IframeSlideView = function(opts) {
 
         SlideView.apply(this, arguments);
         var iframe = document.createElement("iframe");
-        
         iframe.src = "about:blank";
         /*
         consider adding a load event
@@ -127,10 +146,18 @@ setTimeout(function(){
     IframeSlideView.prototype = Object.create(SlideView.prototype);
     IframeSlideView.prototype.constructor = IframeSlideView;
 
+    /**
+     * @method load
+     * @desc loads iframe source
+     */
     IframeSlideView.prototype.load = function() {
         this.iframe.src = this.src;
     };
 
+    /**
+     * @method destroy
+     * @desc clears iframe by adding blank page
+     */
     IframeSlideView.prototype.destroy = function() {
         this.iframe.src = "about:blank";
     };
@@ -244,12 +271,49 @@ setTimeout(function(){
          */
 
 
+
+    /**
+     * @class AnimSlideView
+     * @desc SlideView for animations
+     */
+    var AnimSlideView = function(opts) {
+
+        SlideView.apply(this, arguments);
+        // override current play function if needed
+        if (opts.play) {
+            this.play = opts.play;
+        }
+        this.played = false;
+
+    };
+
+    AnimSlideView.prototype = Object.create(SlideView.prototype);
+    AnimSlideView.prototype.constructor = AnimSlideView;
+
+    /**
+     * @method play
+     * @desc plays animation
+     */
+    AnimSlideView.prototype.play = function() {
+        if (!this.played) {
+            this.el.classList.add("render");
+            this.played = true;
+        }
+    };
+
+
+
+    var HelloKASlideView = new AnimSlideView({
+        el: $("#hello-ka"),
+    });
+
+    window.HelloKASlideView = HelloKASlideView;
+
+
     var KeylightSlideView = new IframeSlideView({
         el: $("#sound-viz"),
         src: "http://hakim.se/experiments/html5/keylight/03"
     });
-
-    window.KeylightSlideView = KeylightSlideView;
 
 
     var AaronTropeSlideView = new IframeSlideView({
@@ -265,7 +329,18 @@ setTimeout(function(){
         src: "http://helloracer.com/webgl/"
     });
 
-    window.HelloRacerSlideView = HelloRacerSlideView;
+
+    var ReadySlideView = new AnimSlideView({
+        el: $("#ready"),
+        play: function() {
+            var tree = $("#khan-tree")
+             // first trigger a reflow
+            // tree.getBoundingClientRect();
+            tree.classList.add("render");
+        }
+    });
+
+    window.ReadySlideView = ReadySlideView;
 
 // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
 
@@ -541,9 +616,7 @@ var SlidedeckView = function(el, slides) {
     var slides = $$(".slide");
     new SlidedeckView($("#world"), [
         // Hello Khan Academy
-        new SlideView({
-            el: slides[0],
-        }),
+        HelloKASlideView,
         // What
         new SlideView({
             el: slides[1],
@@ -587,9 +660,7 @@ var SlidedeckView = function(el, slides) {
             el: slides[12],
         }),
         // I'm Ready
-        new SlideView({
-            el: slides[13],
-        })
+        ReadySlideView
     ]);
 
 })(this);

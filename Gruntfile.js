@@ -83,9 +83,17 @@ module.exports = function (grunt) {
                     "addWheelListener": false,
                     "SlidedeckView": false,
                     "SlideView": false,
+
+                    // Iframe Slides
                     "AaronTropeSlideView": false,
                     "KeylightSlideView": false,
                     "HelloRacerSlideView": false,
+
+                    // Animation Slides
+                    "HelloKASlideView": false,
+                    "ReadySlideView": false,
+
+                    // vars
                     "$": false,
                     "$$": false
                 }

@@ -1,16 +1,16 @@
  /* jshint strict: false */
 define(['var/querySelector','views/StartView', 'views/SlideView', 'views/IframeSlideView', 'views/VideoSlideView', 
+'views/slides/HelloKASlideView',
 'views/slides/KeylightSlideView',
 'views/slides/AaronTropeSlideView',
 'views/slides/HelloRacerSlideView',
+'views/slides/ReadySlideView',
 'views/SlidedeckView'],
 function() {
     var slides = $$(".slide");
     new SlidedeckView($("#world"), [
         // Hello Khan Academy
-        new SlideView({
-            el: slides[0],
-        }),
+        HelloKASlideView,
         // What
         new SlideView({
             el: slides[1],
@@ -54,8 +54,6 @@ function() {
             el: slides[12],
         }),
         // I'm Ready
-        new SlideView({
-            el: slides[13],
-        })
+        ReadySlideView
     ]);
 });
