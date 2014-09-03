@@ -2,6 +2,7 @@ define(['var/querySelector','views/SlideView.js'], function(){
 
     /**
      * @class IframeSlideView
+     * @extends SlideView
      * @desc SlideView for managing content heavy iframes
      */
     var IframeSlideView = function(opts) {

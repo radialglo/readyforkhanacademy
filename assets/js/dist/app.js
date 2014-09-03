@@ -14,64 +14,76 @@ var $ = document.querySelector.bind(document),
 
 
 
-var startScreen = $("#start-screen"),
-    leaf = $(".start-leaf"),
-    leafTrace = $("#leaf-trace"),
-    leafLeftTrace = $('#leaf-trace__left'),
-    leafRightTrace = $('#leaf-trace__right'),
-    topPanel = $(".start-screen__top"),
-    bottomPanel = $(".start-screen__bottom"),
-    renderTrace = function(path) {
-    /**
-     *  @see http://jakearchibald.com/2013/animated-line-drawing-svg/
-     */
 
-        var length = path.getTotalLength();
-        // Clear any previous transition
-        path.style.transition = path.style.WebkitTransition =
-        'none';
-        // Set up the starting positions
-        path.style.strokeDasharray = length + ' ' + length;
-        path.style.strokeDashoffset = length;
-        // Trigger a layout so styles are calculated & the browser
-        // picks up the starting position before animating
-        path.getBoundingClientRect();
-        path.style.visibility = "visible";
-        // Define our transition
-        path.style.transition = path.style.WebkitTransition =
-        'stroke-dashoffset 1.5s ease-in-out';
-        // Go!
-        path.style.strokeDashoffset = '0';
+var StartView = (function() {
+
+    var startScreen = $("#start-screen"),
+        leaf = $(".start-leaf"),
+        leafTrace = $("#leaf-trace"),
+        leafLeftTrace = $('#leaf-trace__left'),
+        leafRightTrace = $('#leaf-trace__right'),
+        topPanel = $(".start-screen__top"),
+        bottomPanel = $(".start-screen__bottom"),
+        renderTrace = function(path) {
+        /**
+        *  @see http://jakearchibald.com/2013/animated-line-drawing-svg/
+        */
+
+            var length = path.getTotalLength();
+            // Clear any previous transition
+            path.style.transition = path.style.WebkitTransition =
+            'none';
+            // Set up the starting positions
+            path.style.strokeDasharray = length + ' ' + length;
+            path.style.strokeDashoffset = length;
+            // Trigger a layout so styles are calculated & the browser
+            // picks up the starting position before animating
+            path.getBoundingClientRect();
+            path.style.visibility = "visible";
+            // Define our transition
+            path.style.transition = path.style.WebkitTransition =
+            'stroke-dashoffset 1.5s ease-in-out';
+            // Go!
+            path.style.strokeDashoffset = '0';
+        };
+
+    return { 
+        init: function(onComplete) {
+            renderTrace(leafLeftTrace);
+            renderTrace(leafRightTrace);
+
+            // TODO: clean up nesting
+            setTimeout(function(){
+                leafTrace.classList.add("hide");
+                leaf.classList.add("show");
+                setTimeout(function() {
+                    leaf.classList.add("scaleDown");
+                    setTimeout(function() {
+                        // may possibly need to make panels look seamless
+                        // $("#start-screen").style.background = "none";
+                        topPanel.classList.add("slideUp");
+                        bottomPanel.classList.add("slideDown");
+                        setTimeout(function() {
+                            // destroy start screen and clear references
+                            startScreen.parentNode.removeChild(startScreen);
+                            if (onComplete) {
+                                onComplete();
+                            }
+                            startScreen = null;
+                            leaf = null;
+                            leafTrace = null;
+                            leafLeftTrace = null;
+                            leafRightTrace = null;
+                            topPanel = null;
+                            bottomPanel = null;
+                            renderTrace = null;
+                        }, 600);
+                    }, 600);
+                }, 500);
+            }, 1500);
+        }
     };
-
-renderTrace(leafLeftTrace);
-renderTrace(leafRightTrace);
-
-// TODO: clean up nesting
-setTimeout(function(){
-    leafTrace.classList.add("hide");
-    leaf.classList.add("show");
-    setTimeout(function() {
-        leaf.classList.add("scaleDown");
-        setTimeout(function() {
-            // may possibly need to make panels look seamless
-            // $("#start-screen").style.background = "none";
-            topPanel.classList.add("slideUp");
-            bottomPanel.classList.add("slideDown");
-            setTimeout(function() {
-                // destroy start screen and clear references
-                startScreen.parentNode.removeChild(startScreen);
-                startScreen = null;
-                leaf = null;
-                leafTrace = null;
-                leafLeftTrace = null;
-                leafRightTrace = null;
-                topPanel = null;
-                bottomPanel = null;
-            }, 500);
-        }, 600);
-    }, 500);
-}, 1500);
+})();
 
 
 
@@ -115,6 +127,7 @@ setTimeout(function(){
 
     /**
      * @class IframeSlideView
+     * @extends SlideView
      * @desc SlideView for managing content heavy iframes
      */
     var IframeSlideView = function(opts) {
@@ -153,6 +166,52 @@ setTimeout(function(){
         this.iframe.src = "about:blank";
     };
 
+
+
+
+    /**
+     * @class AnimSlideView
+     * @extends SlideView
+     * @desc SlideView for animations
+     */
+    var AnimSlideView = function(opts) {
+
+        SlideView.apply(this, arguments);
+        // override current play function if needed
+        if (opts.play) {
+            this.play = opts.play;
+        }
+        this.played = false;
+
+    };
+
+    AnimSlideView.prototype = Object.create(SlideView.prototype);
+    AnimSlideView.prototype.constructor = AnimSlideView;
+
+    /**
+     * @method play
+     * @desc plays animation
+     */
+    AnimSlideView.prototype.play = function() {
+        if (!this.played) {
+            this.el.classList.add("render");
+            this.played = true;
+        }
+    };
+
+
+
+    var HelloKASlideView = new AnimSlideView({
+        el: $("#hello-ka"),
+    });
+
+    window.HelloKASlideView = HelloKASlideView;
+
+
+    var KeylightSlideView = new IframeSlideView({
+        el: $("#sound-viz"),
+        src: "http://hakim.se/experiments/html5/keylight/03"
+    });
 
 
   var canvas = $("#videoCanvas"),
@@ -260,51 +319,6 @@ setTimeout(function(){
          }
          requestAnimationFrame(draw);
          */
-
-
-
-    /**
-     * @class AnimSlideView
-     * @desc SlideView for animations
-     */
-    var AnimSlideView = function(opts) {
-
-        SlideView.apply(this, arguments);
-        // override current play function if needed
-        if (opts.play) {
-            this.play = opts.play;
-        }
-        this.played = false;
-
-    };
-
-    AnimSlideView.prototype = Object.create(SlideView.prototype);
-    AnimSlideView.prototype.constructor = AnimSlideView;
-
-    /**
-     * @method play
-     * @desc plays animation
-     */
-    AnimSlideView.prototype.play = function() {
-        if (!this.played) {
-            this.el.classList.add("render");
-            this.played = true;
-        }
-    };
-
-
-
-    var HelloKASlideView = new AnimSlideView({
-        el: $("#hello-ka"),
-    });
-
-    window.HelloKASlideView = HelloKASlideView;
-
-
-    var KeylightSlideView = new IframeSlideView({
-        el: $("#sound-viz"),
-        src: "http://hakim.se/experiments/html5/keylight/03"
-    });
 
 
     var AaronTropeSlideView = new IframeSlideView({
@@ -598,60 +612,75 @@ var SlidedeckView = function(el, slides) {
         requestTick();
     }
 
+    this.getFrames = function() {
+        return frames;
+    },
+    this.play =  function(idx) {
+        var frame = frames[idx];
+        if (frame && frame.play) {
+            frame.play();
+        }
+    }
+
 };
 
 
 
  /* jshint strict: false */
 
-    var slides = $$(".slide");
-    new SlidedeckView($("#world"), [
-        // Hello Khan Academy
-        HelloKASlideView,
-        // What
-        new SlideView({
-            el: slides[1],
-        }),
-        // Specifics
-        new SlideView({
-            el: slides[2],
-        }),
-        // Research
-        new SlideView({
-            el: slides[3],
-        }),
-        // HTML5 Expansions
-        new SlideView({
-            el: slides[4],
-        }),
-        // Sound Visualization
-        KeylightSlideView,
-        // Chrome Racer
-        new SlideView({
-            el: slides[6],
-        }),
-        // Video Introduction
-        new SlideView({
-            el: slides[7],
-        }),
-        // Aaron Trope
-        AaronTropeSlideView,
-        // Hello Racer
-        HelloRacerSlideView,
-        // Visualizing Algorithms
-        new SlideView({
-            el: slides[10],
-        }),
-        // Enable
-        new SlideView({
-            el: slides[11],
-        }),
-        // Anthony Su
-        new SlideView({
-            el: slides[12],
-        }),
-        // I'm Ready
-        ReadySlideView
-    ]);
+    var slides = $$(".slide"),
+        slideDeck = new SlidedeckView($("#world"), [
+            // Hello Khan Academy
+            HelloKASlideView,
+            // What
+            new SlideView({
+                el: slides[1],
+            }),
+            // Specifics
+            new SlideView({
+                el: slides[2],
+            }),
+            // Research
+            new SlideView({
+                el: slides[3],
+            }),
+            // HTML5 Expansions
+            new SlideView({
+                el: slides[4],
+            }),
+            // Sound Visualization
+            KeylightSlideView,
+            // Chrome Racer
+            new SlideView({
+                el: slides[6],
+            }),
+            // Video Introduction
+            new SlideView({
+                el: slides[7],
+            }),
+            // Aaron Trope
+            AaronTropeSlideView,
+            // Hello Racer
+            HelloRacerSlideView,
+            // Visualizing Algorithms
+            new SlideView({
+                el: slides[10],
+            }),
+            // Enable
+            new SlideView({
+                el: slides[11],
+            }),
+            // Anthony Su
+            new SlideView({
+                el: slides[12],
+            }),
+            // I'm Ready
+            ReadySlideView
+        ]);
+        StartView.init(function() {
+            slideDeck.play(0);
+        });
+        window.slideDeck = slideDeck;
+       
 
 })(this);

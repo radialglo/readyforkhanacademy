@@ -95,7 +95,8 @@ module.exports = function (grunt) {
 
                     // vars
                     "$": false,
-                    "$$": false
+                    "$$": false,
+                    "StartView": false
                 }
             },
             all: {

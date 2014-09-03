@@ -160,6 +160,16 @@ var SlidedeckView = function(el, slides) {
         requestTick();
     }
 
+    this.getFrames = function() {
+        return frames;
+    },
+    this.play =  function(idx) {
+        var frame = frames[idx];
+        if (frame && frame.play) {
+            frame.play();
+        }
+    }
+
 };
 
 

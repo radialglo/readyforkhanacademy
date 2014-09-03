@@ -2,6 +2,7 @@ define(['var/querySelector','views/SlideView.js'], function(){
 
     /**
      * @class AnimSlideView
+     * @extends SlideView
      * @desc SlideView for animations
      */
     var AnimSlideView = function(opts) {
