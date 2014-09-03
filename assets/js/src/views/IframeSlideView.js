@@ -15,8 +15,14 @@ define(['var/querySelector','views/SlideView.js'], function(){
         iframe.onload = function() {
         };
         */
+        var self = this;
+            // TODO make iframe transitions smooth
+        iframe.onload = function() {
+            self.iframe.style.visibility = "visible";
+        };
         this.iframe = iframe;
         this.src = opts.src;
+        this.loaded = false;
         this.container = this.el.querySelector(".content--iframe");
 
         this.container.appendChild(iframe);
@@ -30,7 +36,11 @@ define(['var/querySelector','views/SlideView.js'], function(){
      * @desc loads iframe source
      */
     IframeSlideView.prototype.load = function() {
-        this.iframe.src = this.src;
+        if (!this.loaded) {
+            this.iframe.src = this.src;
+            this.loaded = true;
+            this.iframe.style.visibility = "hidden";
+        }
     };
 
     /**
@@ -38,7 +48,10 @@ define(['var/querySelector','views/SlideView.js'], function(){
      * @desc clears iframe by adding blank page
      */
     IframeSlideView.prototype.destroy = function() {
-        this.iframe.src = "about:blank";
+        if (this.loaded) {
+            this.iframe.src = "about:blank";
+            this.loaded = false;
+        }
     };
 
 });

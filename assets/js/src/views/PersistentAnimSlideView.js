@@ -9,11 +9,11 @@ define(['var/querySelector','views/AnimSlideView.js'], function(){
 
         AnimSlideView.apply(this, arguments);
         if (opts.setup) {
-            this.setup = setup;
+            this.setup = opts.setup;
         }
 
         if (opts.pause) {
-            this.pause = pause;
+            this.pause = opts.pause;
         }
 
     };

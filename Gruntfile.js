@@ -53,7 +53,7 @@ module.exports = function (grunt) {
             options: {
                 "browser": true,
                 "jquery": true,
-                "strict": true,
+                "strict": false,
                 "newcap": true,
                 "undef": true,
                 "curly": true,
@@ -83,6 +83,8 @@ module.exports = function (grunt) {
                     "addWheelListener": false,
                     "SlidedeckView": false,
                     "SlideView": false,
+                    "AnimSlideView": false,
+                    "IframeSlideView": false,
 
                     // Iframe Slides
                     "AaronTropeSlideView": false,
@@ -101,7 +103,9 @@ module.exports = function (grunt) {
             },
             all: {
                 src: [
-                    "Gruntfile.js", jsDir + "src/readyforkhanacademy.js"
+                    "Gruntfile.js", jsDir + "src/readyforkhanacademy.js",
+                    jsDir + "src/views/*.js",
+                    jsDir + "src/views/slides/*.js"
                 ]
             }
         },

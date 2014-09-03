@@ -69,7 +69,7 @@ $xIncrement: 200px;
    // height: $slideHeight;
 }
 
-// transition must be specified in this order, such that bourbon addes prefixes
+// transition must be specified in this order, such that bourbon adds prefixes
 .animateTransform {
     @include transition(transform 500ms $easeOutCubic, opacity 500ms $easeOutCubic);
 }
