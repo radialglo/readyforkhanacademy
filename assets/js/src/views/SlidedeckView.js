@@ -26,6 +26,7 @@ var SlidedeckView = function(el, slides) {
         curIdx = 0,
         currentFrame = frames[curIdx],
         prevFrame = frames[curIdx - 1],
+        nextTwoFrame = frames[curIdx - 2],
         nextFrame = frames[curIdx + 1],
         KEY_LEFT = 37,
         KEY_RIGHT = 39;
@@ -37,11 +38,17 @@ var SlidedeckView = function(el, slides) {
         ]
     });
 
-    function _renderSlide() {
-
+    function _updateSlideReferences() {
         currentFrame = frames[curIdx];
         prevFrame = frames[curIdx - 1];
         nextFrame = frames[curIdx + 1];
+        nextTwoFrame = frames[curIdx + 2];
+    }
+
+    function _renderSlide() {
+
+        currentFrame = frames[curIdx];
+        _updateSlideReferences();
         frames.forEach(function(f, i){
             f.enableAnimation();
         });
@@ -116,6 +123,10 @@ var SlidedeckView = function(el, slides) {
 
     }
 
+    /**
+     * @function playAfterTransition
+     * @desc plays slide after transition ends, i.e. slide stops moving
+     */
     function playAfterTransition(){
         // console.log("transitionend");
         // console.log(currentFrame);
@@ -141,9 +152,7 @@ var SlidedeckView = function(el, slides) {
 
             if (isMouseWheel && translateZ > focusPoint && translateZ <  perspective) {
                 curIdx = i;
-                currentFrame = frames[curIdx];
-                prevFrame = frames[curIdx - 1];
-                nextFrame = frames[curIdx + 1];
+                _updateSlideReferences();
             }
            
             // add some additional offset if slide should be offScreen
@@ -167,32 +176,53 @@ var SlidedeckView = function(el, slides) {
         });
 
         
-        if (currentFrame && currentFrame.play) {
+        if (currentFrame) {
 
-            if (isMouseWheel) {
-                if (!currentFrame.played) {
-                    currentFrame.play();
+            if (currentFrame.play) {
+                if (isMouseWheel) {
+                    if (!currentFrame.played) {
+                        currentFrame.play();
+                    }
+                } else {
+          
+                    currentFrame.el.addEventListener(transEndEvent, playAfterTransition);
                 }
-            } else {
-      
-                currentFrame.el.addEventListener(transEndEvent, playAfterTransition);
+
+            }
+
+            if (currentFrame.load) {
+              currentFrame.load();  
             }
         }
 
-        if (currentFrame && currentFrame.load) {
-            currentFrame.load();
+        if (nextFrame) {
+            // browser bug in Chrome where
+            // loading Youtube Iframe or Canvas with lowered opacity
+            // messes up zIndex layering
+            // fixed by setting to full opacity
+            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video") {
+                nextFrame.el.style.opacity = "1.0";
+            }
+
+            if (nextFrame.destroy) {
+                nextFrame.destroy();
+            }
+
+            if (nextFrame.pause) {
+                nextFrame.pause();
+            }
+               /*
+                console.log(nextFrame.el.id);
+                if (nextFrame && nextFrame.load) {
+                    console.log(nextFrame.id);
+                    nextFrame.load();
+                }*/
         }
 
-        // browser bug in Chrome where
-        // loading Youtube Iirame with lowered opacity
-        // messes up zIndex layering
-        // fixed by setting to full opacity
-        if (nextFrame && nextFrame.el.id === "networking") {
-            nextFrame.el.style.opacity = "1.0";
-        }
-
-        if (nextFrame && nextFrame.destroy) {
-            nextFrame.destroy();
+        if (nextTwoFrame) {
+            if (nextTwoFrame.setup) {
+                nextTwoFrame.setup();
+            }
         }
 
         /*
@@ -203,16 +233,14 @@ var SlidedeckView = function(el, slides) {
                 prevFrame.load();
             }
          */
-        if (prevFrame && prevFrame.destroy) {
-            prevFrame.destroy();
+        if (prevFrame) {
+            if  (prevFrame.destroy) {
+                prevFrame.destroy();
+            }
+            if (prevFrame.pause) {
+                prevFrame.pause();
+            }
         }
-
-        /*
-        console.log(nextFrame.el.id);
-        if (nextFrame && nextFrame.load) {
-            console.log(nextFrame.id);
-            nextFrame.load();
-        }*/
 
         if (isMouseWheel) {
             isMouseWheel = false;

@@ -10,7 +10,7 @@
 
 
 var $ = document.querySelector.bind(document),
-	$$ = document.querySelectorAll.bind(document);
+    $$ = document.querySelectorAll.bind(document);
 
 
 
@@ -227,88 +227,82 @@ var StartView = (function() {
     });
 
 
-  var canvas = $("#videoCanvas"),
-            ctx = canvas.getContext("2d");
 
-        var bgCanvas = document.createElement("canvas");
-        var bgCtx = bgCanvas.getContext("2d"),
-            canvasW = $("#video .content-wrapper").offsetWidth,
-            canvasH = $("#video .content-wrapper").offsetHeight,
-            keyword = "V I D E O",
-            imageData,
-            rowGap = 10,
-            columnGap = 10;
+    /**
+     * @class PersistentAnimSlideView
+     * @extends AnimSlideView
+     * @desc SlideView for animations that loop or have infinite frames
+     */
+    var PersistentAnimSlideView = function(opts) {
 
-         canvas.width = canvasW;
-         canvas.height = canvasH;
-         bgCanvas.width = canvasW;
-         bgCanvas.height = canvasH;
-         // rem works
-         /*
-         bgCtx.font = "200px 'Arial'";
-         bgCtx.font= '"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif';
-         */
-         // bgCtx.font = "bold 200px Oswald ";
-         bgCtx.font = "125px bold Oswald ";
-         //Fill the keyword text onto the bgCanvas.
-         var textMetrics = bgCtx.measureText(keyword);
-         console.log(textMetrics);
-         // draw text relative to its vertical middle
-         bgCtx.textBaseline = "middle";
-         bgCtx.fillText(keyword, ( canvasW / 2 ) - ( Math.round( textMetrics.width /2 ) ) , (canvasH / 2));
-         imageData = bgCtx.getImageData(0, 0, canvasW, canvasH).data;
-         // https://github.com/kennethcachia/Shape-Shifter/blob/master/scripts/shape-builder.js
-         // data is a one dimensional array containing the data in the RGBA order, with integer values 0 and 255
-         // we can check if the pixel was drawn if it has an alpha value greater than 0
-         // console.log(imageData),
-         
-         /*
-         var pixel,
-            particles = [],
-            colors = ["grey", "yellow", "teal", "lime", "magenta" , "red", "blue"],
-            // colors = ["#4387fd", "#125758", "#01a2ff", "#0cf"],
-            color;
-         for (var height = 0; height < canvasH; height += rowGap) {
-             // color = colors[Math.floor((Math.random() * 100))  % colors.length];
-            color = colors[(height / rowGap)  % colors.length];
-            for (var width = 0; width < canvasW; width += columnGap) {
+        AnimSlideView.apply(this, arguments);
+        if (opts.setup) {
+            this.setup = opts.setup;
+        }
 
-                // get the alpha value
-                var index = ((width + (height * canvasW)) * 4) - 1;
-                pixel = imageData[index];
-                console.log(index);
-                console.log(pixel);
-                if (pixel > 0) {
-                    particles.push({
-                        color: color,
-                        x: width,
-                        y: height
-                    });
-                }
+        if (opts.pause) {
+            this.pause = opts.pause;
+        }
 
-            }
-         }
+    };
 
-        // document.body.appendChild(bgCanvas);
+    PersistentAnimSlideView.prototype = Object.create(AnimSlideView.prototype);
+    PersistentAnimSlideView.prototype.constructor = PersistentAnimSlideView;
 
-         console.log(particles);
+    /**
+     * @method setup
+     * @desc performs preprocessing or any other work before animation
+     */
+    PersistentAnimSlideView.prototype.setup = function() {
+    };
 
-         var draw = function() {
+    /**
+     * @method play
+     * @desc plays animation
+     */
+    PersistentAnimSlideView.prototype.play = function() {
+    };
 
-         // color = colors[Math.floor((Math.random() * 100))  % colors.length];
+    /**
+     * @method pause
+     * @desc pause  animation
+     */
+    PersistentAnimSlideView.prototype.pause = function() {
+    };
 
-         var end = Math.floor(canvasW / columnGap / 5);
 
-         // ctx.fillStyle = "black";
-         ctx.clearRect(0, 0, canvasW, canvasH);
-         // ctx.fillRect(0, 0, canvasW, canvasH)
-         // add text shadows
-         ctx.shadowColor = "#000";
-         ctx.shadowBlur = "4";
-         // draw
-         var p,x,y;
-         ctx.lineWidth = 1;
-         for (var i = 0; i < particles.length; i++) {
+
+var VideoSlideView;
+
+(function() {
+
+var canvas = $("#videoCanvas"),
+    ctx = canvas.getContext("2d"),
+
+    bgCanvas = document.createElement("canvas"),
+    bgCtx = bgCanvas.getContext("2d"),
+
+    canvasW,
+    canvasH,
+    imageData,
+    keyword = "V I D E O",
+    rowGap = 10,
+    columnGap = 10,
+    requestId,
+    drawing = false,
+    particles;
+
+ 
+var draw = function() {
+    if (drawing) {
+        ctx.clearRect(0, 0, canvasW, canvasH);
+        // add text shadows
+        ctx.shadowColor = "#000";
+        ctx.shadowBlur = "4";
+        // draw
+        var p,x,y;
+        ctx.lineWidth = 1;
+        for (var i = 0; i < particles.length; i++) {
 
             var width   = columnGap - 2,
                 height  = rowGap;
@@ -319,19 +313,78 @@ var StartView = (function() {
             ctx.strokeStyle = p.color;
 
             ctx.beginPath();
-            ctx.moveTo( x, y - height / 2 );
+            ctx.moveTo( x, y);
 
-            ctx.lineTo(x + (2 + Math.random() * width), y - height / 2);
+            // oscillate between a threshold
+            ctx.lineTo(x + (2 + Math.random() * width), y);
         
 
             ctx.closePath();
             ctx.stroke();
            
-         }
-            requestAnimationFrame(draw);
-         }
-         requestAnimationFrame(draw);
-         */
+        }
+        requestId = requestAnimationFrame(draw);
+    }
+ };
+
+    VideoSlideView = new PersistentAnimSlideView({
+        el: $("#video"),
+        setup: function() {
+            if (!this.ready) {
+                var textMetrics,
+                    worker;
+                canvasW = this.el.querySelector('.content-wrapper').offsetWidth;
+                canvasH = this.el.querySelector('.content-wrapper').offsetHeight;
+
+                canvas.width = canvasW;
+                canvas.height = canvasH;
+                bgCanvas.width = canvasW;
+                bgCanvas.height = canvasH;
+
+
+                bgCtx.font = "125px bold Oswald ";
+                // Fill the keyword text onto the bgCanvas.
+                textMetrics = bgCtx.measureText(keyword);
+                // console.log(textMetrics);
+                // draw text relative to its vertical middle
+                bgCtx.textBaseline = "middle";
+                bgCtx.fillText(keyword, ( canvasW / 2 ) - ( Math.round( textMetrics.width /2 ) ) , (canvasH / 2));
+                imageData = bgCtx.getImageData(0, 0, canvasW, canvasH).data;
+               
+                // TODO resize text if too big
+                worker = new Worker("js/thread/prepareVideoSlideView.min.js");
+                worker.addEventListener("message", function(e) {
+                    particles = e.data.message;
+                    console.log(e.data);
+                    worker.terminate();
+                    worker = null;
+                });
+
+                // tell worker to begin image processing
+                worker.postMessage({
+                    canvasW: canvasW,
+                    canvasH: canvasH,
+                    imageData: imageData
+                });
+            }
+            this.ready = true;
+        },
+        play: function() {
+            drawing = true;
+            requestId = requestAnimationFrame(draw);
+
+        },
+        pause: function() {
+            console.log("pause");
+            drawing = false;
+            cancelAnimationFrame(requestId);
+        }
+    });
+
+})();
+
+         
+    window.VideoSlideView = VideoSlideView;
 
 
     var AaronTropeSlideView = new IframeSlideView({
@@ -491,6 +544,7 @@ var SlidedeckView = function(el, slides) {
         curIdx = 0,
         currentFrame = frames[curIdx],
         prevFrame = frames[curIdx - 1],
+        nextTwoFrame = frames[curIdx - 2],
         nextFrame = frames[curIdx + 1],
         KEY_LEFT = 37,
         KEY_RIGHT = 39;
@@ -502,11 +556,17 @@ var SlidedeckView = function(el, slides) {
         ]
     });
 
-    function _renderSlide() {
-
+    function _updateSlideReferences() {
         currentFrame = frames[curIdx];
         prevFrame = frames[curIdx - 1];
         nextFrame = frames[curIdx + 1];
+        nextTwoFrame = frames[curIdx + 2];
+    }
+
+    function _renderSlide() {
+
+        currentFrame = frames[curIdx];
+        _updateSlideReferences();
         frames.forEach(function(f, i){
             f.enableAnimation();
         });
@@ -581,6 +641,10 @@ var SlidedeckView = function(el, slides) {
 
     }
 
+    /**
+     * @function playAfterTransition
+     * @desc plays slide after transition ends, i.e. slide stops moving
+     */
     function playAfterTransition(){
         // console.log("transitionend");
         // console.log(currentFrame);
@@ -606,9 +670,7 @@ var SlidedeckView = function(el, slides) {
 
             if (isMouseWheel && translateZ > focusPoint && translateZ <  perspective) {
                 curIdx = i;
-                currentFrame = frames[curIdx];
-                prevFrame = frames[curIdx - 1];
-                nextFrame = frames[curIdx + 1];
+                _updateSlideReferences();
             }
            
             // add some additional offset if slide should be offScreen
@@ -632,32 +694,53 @@ var SlidedeckView = function(el, slides) {
         });
 
         
-        if (currentFrame && currentFrame.play) {
+        if (currentFrame) {
 
-            if (isMouseWheel) {
-                if (!currentFrame.played) {
-                    currentFrame.play();
+            if (currentFrame.play) {
+                if (isMouseWheel) {
+                    if (!currentFrame.played) {
+                        currentFrame.play();
+                    }
+                } else {
+          
+                    currentFrame.el.addEventListener(transEndEvent, playAfterTransition);
                 }
-            } else {
-      
-                currentFrame.el.addEventListener(transEndEvent, playAfterTransition);
+
+            }
+
+            if (currentFrame.load) {
+              currentFrame.load();  
             }
         }
 
-        if (currentFrame && currentFrame.load) {
-            currentFrame.load();
+        if (nextFrame) {
+            // browser bug in Chrome where
+            // loading Youtube Iframe or Canvas with lowered opacity
+            // messes up zIndex layering
+            // fixed by setting to full opacity
+            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video") {
+                nextFrame.el.style.opacity = "1.0";
+            }
+
+            if (nextFrame.destroy) {
+                nextFrame.destroy();
+            }
+
+            if (nextFrame.pause) {
+                nextFrame.pause();
+            }
+               /*
+                console.log(nextFrame.el.id);
+                if (nextFrame && nextFrame.load) {
+                    console.log(nextFrame.id);
+                    nextFrame.load();
+                }*/
         }
 
-        // browser bug in Chrome where
-        // loading Youtube Iirame with lowered opacity
-        // messes up zIndex layering
-        // fixed by setting to full opacity
-        if (nextFrame && nextFrame.el.id === "networking") {
-            nextFrame.el.style.opacity = "1.0";
-        }
-
-        if (nextFrame && nextFrame.destroy) {
-            nextFrame.destroy();
+        if (nextTwoFrame) {
+            if (nextTwoFrame.setup) {
+                nextTwoFrame.setup();
+            }
         }
 
         /*
@@ -668,16 +751,14 @@ var SlidedeckView = function(el, slides) {
                 prevFrame.load();
             }
          */
-        if (prevFrame && prevFrame.destroy) {
-            prevFrame.destroy();
+        if (prevFrame) {
+            if  (prevFrame.destroy) {
+                prevFrame.destroy();
+            }
+            if (prevFrame.pause) {
+                prevFrame.pause();
+            }
         }
-
-        /*
-        console.log(nextFrame.el.id);
-        if (nextFrame && nextFrame.load) {
-            console.log(nextFrame.id);
-            nextFrame.load();
-        }*/
 
         if (isMouseWheel) {
             isMouseWheel = false;
@@ -738,9 +819,7 @@ var SlidedeckView = function(el, slides) {
                 el: slides[6],
             }),
             // Video Introduction
-            new SlideView({
-                el: slides[7],
-            }),
+            VideoSlideView,
             // Aaron Trope
             AaronTropeSlideView,
             // Hello Racer
@@ -764,6 +843,6 @@ var SlidedeckView = function(el, slides) {
             slideDeck.play(0);
         });
         window.slideDeck = slideDeck;
-       
+
 
 })(this);

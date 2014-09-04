@@ -20,6 +20,9 @@ module.exports = function (grunt) {
         shell: {
             cleanCSS: {
                 command: "rm " + cssDir + "*.css"
+            },
+            moveJS: {
+                command: "mkdir -p " + jsDir + "thread; cp -r " + jsDir + "src/thread/*.js " + jsDir + "thread"
             }
         },
 
@@ -85,6 +88,7 @@ module.exports = function (grunt) {
                     "SlideView": false,
                     "AnimSlideView": false,
                     "IframeSlideView": false,
+                    "PersistentAnimSlideView": false,
 
                     // Iframe Slides
                     "AaronTropeSlideView": false,
@@ -94,6 +98,9 @@ module.exports = function (grunt) {
                     // Animation Slides
                     "HelloKASlideView": false,
                     "ReadySlideView": false,
+
+                    // Persistent Animation Slides
+                    "VideoSlideView": false,
 
                     // vars
                     "$": false,
@@ -117,7 +124,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: jsDir,
-                    src: ['*.js', '!*min.js'], // don't minify min files
+                    src: ['*.js', '!*min.js', 'thread/*.js', '!thread/*min.js'], // don't minify min files
                     dest: jsDir,
                     ext: '.min.js'
                 }]
@@ -149,6 +156,6 @@ module.exports = function (grunt) {
 
     grunt.loadTasks(jsDir + "build/tasks");
     grunt.registerTask("default",  ["js", "css"]);
-    grunt.registerTask("js", ["jshint", "build:*:*", "concat", "uglify"]);
+    grunt.registerTask("js", ["jshint", "build:*:*", "concat", "shell:moveJS", "uglify"]);
     grunt.registerTask("css",  ["shell:cleanCSS", "sass", "cssmin"]);
 };

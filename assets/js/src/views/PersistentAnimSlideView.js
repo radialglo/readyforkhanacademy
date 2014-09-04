@@ -1,4 +1,4 @@
-define(['var/querySelector','views/AnimSlideView.js'], function(){
+define(['var/querySelector','views/AnimSlideView'], function(){
 
     /**
      * @class PersistentAnimSlideView

@@ -38,9 +38,7 @@ function() {
                 el: slides[6],
             }),
             // Video Introduction
-            new SlideView({
-                el: slides[7],
-            }),
+            VideoSlideView,
             // Aaron Trope
             AaronTropeSlideView,
             // Hello Racer
@@ -64,5 +62,5 @@ function() {
             slideDeck.play(0);
         });
         window.slideDeck = slideDeck;
-       
+
 });
