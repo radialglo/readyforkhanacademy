@@ -19,6 +19,7 @@ git checkout -B $GH
 git merge -s subtree master
 rm -rf Procfile app.js package.json Gruntfile.js README.md node_modules views
 mv assets/* .
+rm -rf assets
 rm -rf scss
 git add --all .
 git commit -m "$DATE"
