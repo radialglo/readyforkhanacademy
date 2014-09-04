@@ -132,7 +132,6 @@
 }
 
 #khan-hand {
-    @include transition(transform 300ms $easeOutCubic 500ms);
     width: 300px;
     fill: #9b9188;
     width: 275px;
@@ -151,26 +150,35 @@
     // color: #EEF;
 }
 
-.r1 {
-    @include transition(all 500ms $easeCrazyOutBack);
-    @include transition-delay(200ms);
-}
-
-.r2 {
-    @include transition(all 500ms $easeCrazyOutBack);
-    @include transition-delay(400ms);
-}
-
-.r3 {
-    @include transition(all 500ms $easeCrazyOutBack);
-    // @include transition-delay(500ms);
-}
-
-@for $i from 1 through 23 {
-    .l#{$i} {
-        @include transition-delay(500ms + $i * 20ms);
+#khan-tree.render  > {
+    
+    #khan-hand {
+        @include transition(transform 300ms $easeOutCubic 500ms);
     }
+
+    .r1 {
+        @include transition(all 500ms $easeCrazyOutBack);
+        @include transition-delay(200ms);
+    }
+
+    .r2 {
+        @include transition(all 500ms $easeCrazyOutBack);
+        @include transition-delay(400ms);
+    }
+
+    .r3 {
+        @include transition(all 500ms $easeCrazyOutBack);
+        // @include transition-delay(500ms);
+    }
+
+    @for $i from 1 through 23 {
+        .l#{$i} {
+            @include transition-delay(500ms + $i * 20ms);
+        }
+    }
+
 }
+
 // 23 leaves
 // row 1: 1 - 10
 // row 2: 11 - 21

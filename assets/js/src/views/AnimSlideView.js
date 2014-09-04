@@ -11,6 +11,10 @@ define(['var/querySelector','views/SlideView.js'], function(){
         // override current play function if needed
         if (opts.play) {
             this.play = opts.play;
+        } 
+
+        if (opts.replay) {
+            this.replay = opts.replay;
         }
         this.played = false;
 
@@ -27,7 +31,19 @@ define(['var/querySelector','views/SlideView.js'], function(){
         if (!this.played) {
             this.el.classList.add("render");
             this.played = true;
-        }
+        } 
+    };
+
+    /**
+     * @method replay
+     * @desc replays animation
+     */
+
+    AnimSlideView.prototype.replay = function() {
+        this.el.classList.remove("render");
+        // trigger a reflow
+        this.el.getBoundingClientRect();
+        this.el.classList.add("render");
     };
 
 });

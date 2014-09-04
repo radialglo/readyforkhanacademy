@@ -202,6 +202,10 @@ var StartView = (function() {
         // override current play function if needed
         if (opts.play) {
             this.play = opts.play;
+        } 
+
+        if (opts.replay) {
+            this.replay = opts.replay;
         }
         this.played = false;
 
@@ -218,7 +222,19 @@ var StartView = (function() {
         if (!this.played) {
             this.el.classList.add("render");
             this.played = true;
-        }
+        } 
+    };
+
+    /**
+     * @method replay
+     * @desc replays animation
+     */
+
+    AnimSlideView.prototype.replay = function() {
+        this.el.classList.remove("render");
+        // trigger a reflow
+        this.el.getBoundingClientRect();
+        this.el.classList.add("render");
     };
 
 
@@ -415,10 +431,22 @@ var draw = function() {
     var ReadySlideView = new AnimSlideView({
         el: $("#ready"),
         play: function() {
+            if (!this.played) {
+                var tree = $("#khan-tree");
+                 // first trigger a reflow
+                // tree.getBoundingClientRect();
+                tree.classList.add("render");
+                this.played = true;
+            } else {
+                this.replay();
+            }
+        },
+        replay: function() {
             var tree = $("#khan-tree");
-             // first trigger a reflow
-            // tree.getBoundingClientRect();
-            tree.classList.add("render");
+                tree.classList.remove("render");
+                // trigger a reflow
+                tree.getBoundingClientRect();
+                tree.classList.add("render");
         }
     });
 
@@ -555,7 +583,7 @@ var SlidedeckView = function(el, slides) {
         curIdx = 0,
         currentFrame = frames[curIdx],
         prevFrame = frames[curIdx - 1],
-        nextTwoFrame = frames[curIdx - 2],
+        nextTwoFrame = frames[curIdx + 2],
         nextFrame = frames[curIdx + 1],
         KEY_LEFT = 37,
         KEY_RIGHT = 39;
@@ -576,7 +604,6 @@ var SlidedeckView = function(el, slides) {
 
     function _renderSlide() {
 
-        currentFrame = frames[curIdx];
         _updateSlideReferences();
         frames.forEach(function(f, i){
             f.enableAnimation();
@@ -657,12 +684,16 @@ var SlidedeckView = function(el, slides) {
      * @desc plays slide after transition ends, i.e. slide stops moving
      */
     function playAfterTransition(){
-        // console.log("transitionend");
+        console.log("transitionend");
         // console.log(currentFrame);
         currentFrame.play();
         currentFrame.el.removeEventListener(transEndEvent, playAfterTransition);
     }
 
+    /**
+     * @function update
+     * @desc updates slide deck within animation frame
+     */
     function update() {
 
         var translateZ,
@@ -691,8 +722,8 @@ var SlidedeckView = function(el, slides) {
             
             rotateY = calculateRotation(translateZ);
 
-            // add rotation if needed for mouse/swipe events
-            if (translateZ > perspective) {
+            // make sure we don't rotate past 90
+            if (rotateY > 90) {
                 rotateY = 90;
             }
 
@@ -713,8 +744,9 @@ var SlidedeckView = function(el, slides) {
                         currentFrame.play();
                     }
                 } else {
-          
+                  
                     currentFrame.el.addEventListener(transEndEvent, playAfterTransition);
+                    
                 }
 
             }
@@ -740,12 +772,13 @@ var SlidedeckView = function(el, slides) {
             if (nextFrame.pause) {
                 nextFrame.pause();
             }
-               /*
+            /*
                 console.log(nextFrame.el.id);
                 if (nextFrame && nextFrame.load) {
                     console.log(nextFrame.id);
                     nextFrame.load();
-                }*/
+                }
+            */
         }
 
         if (nextTwoFrame) {
@@ -761,7 +794,7 @@ var SlidedeckView = function(el, slides) {
             if (prevFrame && prevFrame.load) {
                 prevFrame.load();
             }
-         */
+        */
         if (prevFrame) {
             if  (prevFrame.destroy) {
                 prevFrame.destroy();
@@ -778,6 +811,7 @@ var SlidedeckView = function(el, slides) {
         ticking = false;
     }
 
+ 
     hammerTime.on("swipeleft", nextSlide);
     hammerTime.on("swiperight", previousSlide);
     window.addEventListener("keyup", handleKeys);

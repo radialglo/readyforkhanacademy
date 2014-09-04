@@ -2317,11 +2317,6 @@ iframe {
 }
 
 #khan-hand {
-  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
-  -webkit-transition-delay: 500ms;
-  -moz-transition: -moz-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
-  -o-transition: -o-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
-  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
   width: 300px;
   fill: #9b9188;
   width: 275px;
@@ -2341,7 +2336,14 @@ iframe {
   color: #9eb63a;
 }
 
-.r1 {
+#khan-tree.render > #khan-hand {
+  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  -webkit-transition-delay: 500ms;
+  -moz-transition: -moz-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
+  -o-transition: -o-transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
+  transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 500ms;
+}
+#khan-tree.render > .r1 {
   -webkit-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -moz-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -o-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
@@ -2351,8 +2353,7 @@ iframe {
   -o-transition-delay: 200ms;
   transition-delay: 200ms;
 }
-
-.r2 {
+#khan-tree.render > .r2 {
   -webkit-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -moz-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -o-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
@@ -2362,169 +2363,145 @@ iframe {
   -o-transition-delay: 400ms;
   transition-delay: 400ms;
 }
-
-.r3 {
+#khan-tree.render > .r3 {
   -webkit-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -moz-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   -o-transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
   transition: all 500ms cubic-bezier(0.325, 0, 0, 1.65);
 }
-
-.l1 {
+#khan-tree.render > .l1 {
   -webkit-transition-delay: 520ms;
   -moz-transition-delay: 520ms;
   -o-transition-delay: 520ms;
   transition-delay: 520ms;
 }
-
-.l2 {
+#khan-tree.render > .l2 {
   -webkit-transition-delay: 540ms;
   -moz-transition-delay: 540ms;
   -o-transition-delay: 540ms;
   transition-delay: 540ms;
 }
-
-.l3 {
+#khan-tree.render > .l3 {
   -webkit-transition-delay: 560ms;
   -moz-transition-delay: 560ms;
   -o-transition-delay: 560ms;
   transition-delay: 560ms;
 }
-
-.l4 {
+#khan-tree.render > .l4 {
   -webkit-transition-delay: 580ms;
   -moz-transition-delay: 580ms;
   -o-transition-delay: 580ms;
   transition-delay: 580ms;
 }
-
-.l5 {
+#khan-tree.render > .l5 {
   -webkit-transition-delay: 600ms;
   -moz-transition-delay: 600ms;
   -o-transition-delay: 600ms;
   transition-delay: 600ms;
 }
-
-.l6 {
+#khan-tree.render > .l6 {
   -webkit-transition-delay: 620ms;
   -moz-transition-delay: 620ms;
   -o-transition-delay: 620ms;
   transition-delay: 620ms;
 }
-
-.l7 {
+#khan-tree.render > .l7 {
   -webkit-transition-delay: 640ms;
   -moz-transition-delay: 640ms;
   -o-transition-delay: 640ms;
   transition-delay: 640ms;
 }
-
-.l8 {
+#khan-tree.render > .l8 {
   -webkit-transition-delay: 660ms;
   -moz-transition-delay: 660ms;
   -o-transition-delay: 660ms;
   transition-delay: 660ms;
 }
-
-.l9 {
+#khan-tree.render > .l9 {
   -webkit-transition-delay: 680ms;
   -moz-transition-delay: 680ms;
   -o-transition-delay: 680ms;
   transition-delay: 680ms;
 }
-
-.l10 {
+#khan-tree.render > .l10 {
   -webkit-transition-delay: 700ms;
   -moz-transition-delay: 700ms;
   -o-transition-delay: 700ms;
   transition-delay: 700ms;
 }
-
-.l11 {
+#khan-tree.render > .l11 {
   -webkit-transition-delay: 720ms;
   -moz-transition-delay: 720ms;
   -o-transition-delay: 720ms;
   transition-delay: 720ms;
 }
-
-.l12 {
+#khan-tree.render > .l12 {
   -webkit-transition-delay: 740ms;
   -moz-transition-delay: 740ms;
   -o-transition-delay: 740ms;
   transition-delay: 740ms;
 }
-
-.l13 {
+#khan-tree.render > .l13 {
   -webkit-transition-delay: 760ms;
   -moz-transition-delay: 760ms;
   -o-transition-delay: 760ms;
   transition-delay: 760ms;
 }
-
-.l14 {
+#khan-tree.render > .l14 {
   -webkit-transition-delay: 780ms;
   -moz-transition-delay: 780ms;
   -o-transition-delay: 780ms;
   transition-delay: 780ms;
 }
-
-.l15 {
+#khan-tree.render > .l15 {
   -webkit-transition-delay: 800ms;
   -moz-transition-delay: 800ms;
   -o-transition-delay: 800ms;
   transition-delay: 800ms;
 }
-
-.l16 {
+#khan-tree.render > .l16 {
   -webkit-transition-delay: 820ms;
   -moz-transition-delay: 820ms;
   -o-transition-delay: 820ms;
   transition-delay: 820ms;
 }
-
-.l17 {
+#khan-tree.render > .l17 {
   -webkit-transition-delay: 840ms;
   -moz-transition-delay: 840ms;
   -o-transition-delay: 840ms;
   transition-delay: 840ms;
 }
-
-.l18 {
+#khan-tree.render > .l18 {
   -webkit-transition-delay: 860ms;
   -moz-transition-delay: 860ms;
   -o-transition-delay: 860ms;
   transition-delay: 860ms;
 }
-
-.l19 {
+#khan-tree.render > .l19 {
   -webkit-transition-delay: 880ms;
   -moz-transition-delay: 880ms;
   -o-transition-delay: 880ms;
   transition-delay: 880ms;
 }
-
-.l20 {
+#khan-tree.render > .l20 {
   -webkit-transition-delay: 900ms;
   -moz-transition-delay: 900ms;
   -o-transition-delay: 900ms;
   transition-delay: 900ms;
 }
-
-.l21 {
+#khan-tree.render > .l21 {
   -webkit-transition-delay: 920ms;
   -moz-transition-delay: 920ms;
   -o-transition-delay: 920ms;
   transition-delay: 920ms;
 }
-
-.l22 {
+#khan-tree.render > .l22 {
   -webkit-transition-delay: 940ms;
   -moz-transition-delay: 940ms;
   -o-transition-delay: 940ms;
   transition-delay: 940ms;
 }
-
-.l23 {
+#khan-tree.render > .l23 {
   -webkit-transition-delay: 960ms;
   -moz-transition-delay: 960ms;
   -o-transition-delay: 960ms;
