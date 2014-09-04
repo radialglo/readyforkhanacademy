@@ -1,0 +1,14 @@
+@import "../../../base/base";
+
+#sound-viz {
+    background: url(../raw/keylight_960_640.png) no-repeat center center /* fixed */; 
+    @include background-size(cover);
+}
+
+@include mq-small-only {
+	#sound-viz {
+	    background: url(../raw/keylight_small.png) no-repeat center center /* fixed */; 
+	    @include background-size(cover);
+	}
+	
+}

@@ -1,4 +1,4 @@
-@import "../../base/base";
+@import "../../../base/base";
 
 .dark-green {
     @include background-image( linear-gradient(45deg, #125758, #333) );

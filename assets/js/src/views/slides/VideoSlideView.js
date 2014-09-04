@@ -16,42 +16,43 @@ var canvas = $("#videoCanvas"),
     rowGap = 10,
     columnGap = 10,
     requestId,
-    drawing = false,
+    playing = false,
     particles;
 
  
 var draw = function() {
-    if (drawing) {
-        ctx.clearRect(0, 0, canvasW, canvasH);
-        // add text shadows
-        ctx.shadowColor = "#000";
-        ctx.shadowBlur = "4";
-        // draw
-        var p,x,y;
-        ctx.lineWidth = 1;
-        for (var i = 0; i < particles.length; i++) {
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    // add text shadows
+    ctx.shadowColor = "#000";
+    ctx.shadowBlur = "4";
+    // draw
+    var p,x,y;
+    ctx.lineWidth = 1;
+    for (var i = 0; i < particles.length; i++) {
 
-            var width   = columnGap - 2,
-                height  = rowGap;
-            p = particles[i];
-            x = p.x;
-            y = p.y;
-            ctx.fillStyle = p.color;
-            ctx.strokeStyle = p.color;
+        var width   = columnGap - 2,
+            height  = rowGap;
+        p = particles[i];
+        x = p.x;
+        y = p.y;
+        ctx.fillStyle = p.color;
+        ctx.strokeStyle = p.color;
 
-            ctx.beginPath();
-            ctx.moveTo( x, y);
+        ctx.beginPath();
+        ctx.moveTo( x, y);
 
-            // oscillate between a threshold
-            ctx.lineTo(x + (2 + Math.random() * width), y);
-        
+        // oscillate between a threshold
+        ctx.lineTo(x + (2 + Math.random() * width), y);
+    
 
-            ctx.closePath();
-            ctx.stroke();
-           
-        }
+        ctx.closePath();
+        ctx.stroke();
+       
+    }
+    if (playing) {
         requestId = requestAnimationFrame(draw);
     }
+    
  };
 
     VideoSlideView = new PersistentAnimSlideView({
@@ -82,6 +83,7 @@ var draw = function() {
                 worker = new Worker("js/thread/prepareVideoSlideView.min.js");
                 worker.addEventListener("message", function(e) {
                     particles = e.data.message;
+                    draw();
                     console.log(e.data);
                     worker.terminate();
                     worker = null;
@@ -97,13 +99,13 @@ var draw = function() {
             this.ready = true;
         },
         play: function() {
-            drawing = true;
+            playing = true;
             requestId = requestAnimationFrame(draw);
 
         },
         pause: function() {
             // console.log("pause");
-            drawing = false;
+            playing = false;
             cancelAnimationFrame(requestId);
         }
     });

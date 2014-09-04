@@ -7,21 +7,25 @@
 
 @import "modules/slide-deck/style";
 
+@import "modules/slide-themes/dark-green/style";
+
+@import "modules/slide-themes/navy-blue/style";
+
+@import "modules/slide-themes/iframe/style";
+
 @import "modules/start-screen/style";
 
-@import "modules/hello-ka/style";
+@import "modules/slides/hello-ka/style";
 
-@import "modules/dark-green/style";
+@import "modules/slides/specifics/style";
 
-@import "modules/navy-blue/style";
+@import "modules/slides/sound-viz/style";
 
-@import "modules/specifics/style";
+@import "modules/slides/video/style";
 
-@import "modules/iframe/style";
+@import "modules/slides/aaron-trope/style";
 
-@import "modules/video/style";
+@import "modules/slides/hello-racer/style";
 
-@import "modules/ready/style";
-
-
+@import "modules/slides/ready/style";
 

@@ -1,0 +1,14 @@
+@import "../../../base/base";
+
+#hello-racer{
+    background: url(../raw/helloracer_960_640.png) no-repeat center center /* fixed */; 
+    @include background-size(cover);
+}
+
+@include mq-small-only {
+	#hello-racer {
+	    background: url(../raw/helloracer_640_640.png) no-repeat center center /* fixed */; 
+	    @include background-size(cover);
+	}
+	
+}

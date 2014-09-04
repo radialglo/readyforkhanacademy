@@ -11,7 +11,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-09-03
+ * Date: 2014-09-04
  */
 (function(window, undefined) {
 
@@ -232,7 +232,7 @@ var StartView = (function() {
 
     var KeylightSlideView = new IframeSlideView({
         el: $("#sound-viz"),
-        src: "http://hakim.se/experiments/html5/keylight/03"
+        src: "http://hakim.se/experiments/html5/keylight/03/#488x845_311x688_193x505_213x329_338x237_477x333_622x229_774x331_763x523_677x684_2"
     });
 
 
@@ -298,42 +298,43 @@ var canvas = $("#videoCanvas"),
     rowGap = 10,
     columnGap = 10,
     requestId,
-    drawing = false,
+    playing = false,
     particles;
 
  
 var draw = function() {
-    if (drawing) {
-        ctx.clearRect(0, 0, canvasW, canvasH);
-        // add text shadows
-        ctx.shadowColor = "#000";
-        ctx.shadowBlur = "4";
-        // draw
-        var p,x,y;
-        ctx.lineWidth = 1;
-        for (var i = 0; i < particles.length; i++) {
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    // add text shadows
+    ctx.shadowColor = "#000";
+    ctx.shadowBlur = "4";
+    // draw
+    var p,x,y;
+    ctx.lineWidth = 1;
+    for (var i = 0; i < particles.length; i++) {
 
-            var width   = columnGap - 2,
-                height  = rowGap;
-            p = particles[i];
-            x = p.x;
-            y = p.y;
-            ctx.fillStyle = p.color;
-            ctx.strokeStyle = p.color;
+        var width   = columnGap - 2,
+            height  = rowGap;
+        p = particles[i];
+        x = p.x;
+        y = p.y;
+        ctx.fillStyle = p.color;
+        ctx.strokeStyle = p.color;
 
-            ctx.beginPath();
-            ctx.moveTo( x, y);
+        ctx.beginPath();
+        ctx.moveTo( x, y);
 
-            // oscillate between a threshold
-            ctx.lineTo(x + (2 + Math.random() * width), y);
-        
+        // oscillate between a threshold
+        ctx.lineTo(x + (2 + Math.random() * width), y);
+    
 
-            ctx.closePath();
-            ctx.stroke();
-           
-        }
+        ctx.closePath();
+        ctx.stroke();
+       
+    }
+    if (playing) {
         requestId = requestAnimationFrame(draw);
     }
+    
  };
 
     VideoSlideView = new PersistentAnimSlideView({
@@ -364,6 +365,7 @@ var draw = function() {
                 worker = new Worker("js/thread/prepareVideoSlideView.min.js");
                 worker.addEventListener("message", function(e) {
                     particles = e.data.message;
+                    draw();
                     console.log(e.data);
                     worker.terminate();
                     worker = null;
@@ -379,13 +381,13 @@ var draw = function() {
             this.ready = true;
         },
         play: function() {
-            drawing = true;
+            playing = true;
             requestId = requestAnimationFrame(draw);
 
         },
         pause: function() {
-            console.log("pause");
-            drawing = false;
+            // console.log("pause");
+            playing = false;
             cancelAnimationFrame(requestId);
         }
     });
@@ -405,7 +407,7 @@ var draw = function() {
 
 
     var HelloRacerSlideView = new IframeSlideView({
-        el: $("#graphics"),
+        el: $("#hello-racer"),
         src: "http://helloracer.com/webgl/"
     });
 
