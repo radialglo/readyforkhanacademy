@@ -684,7 +684,7 @@ var SlidedeckView = function(el, slides) {
      * @desc plays slide after transition ends, i.e. slide stops moving
      */
     function playAfterTransition(){
-        console.log("transitionend");
+        // console.log("transitionend");
         // console.log(currentFrame);
         currentFrame.play();
         currentFrame.el.removeEventListener(transEndEvent, playAfterTransition);
@@ -761,7 +761,7 @@ var SlidedeckView = function(el, slides) {
             // loading Youtube Iframe or Canvas with lowered opacity
             // messes up zIndex layering
             // fixed by setting to full opacity
-            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video") {
+            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video" || nextFrame.el.id === "graphics") {
                 nextFrame.el.style.opacity = "1.0";
             }
 
@@ -867,19 +867,23 @@ var SlidedeckView = function(el, slides) {
             VideoSlideView,
             // Aaron Trope
             AaronTropeSlideView,
+            // Graphics
+             new SlideView({
+                el: slides[9],
+            }),
             // Hello Racer
             HelloRacerSlideView,
             // Visualizing Algorithms
             new SlideView({
-                el: slides[10],
+                el: slides[11],
             }),
             // Enable
             new SlideView({
-                el: slides[11],
+                el: slides[12],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[12],
+                el: slides[13],
             }),
             // I'm Ready
             ReadySlideView

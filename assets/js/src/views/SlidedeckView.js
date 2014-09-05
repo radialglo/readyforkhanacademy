@@ -127,7 +127,7 @@ var SlidedeckView = function(el, slides) {
      * @desc plays slide after transition ends, i.e. slide stops moving
      */
     function playAfterTransition(){
-        console.log("transitionend");
+        // console.log("transitionend");
         // console.log(currentFrame);
         currentFrame.play();
         currentFrame.el.removeEventListener(transEndEvent, playAfterTransition);
@@ -204,7 +204,7 @@ var SlidedeckView = function(el, slides) {
             // loading Youtube Iframe or Canvas with lowered opacity
             // messes up zIndex layering
             // fixed by setting to full opacity
-            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video") {
+            if (nextFrame.el.id === "networking" || nextFrame.el.id === "video" || nextFrame.el.id === "graphics") {
                 nextFrame.el.style.opacity = "1.0";
             }
 

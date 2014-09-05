@@ -41,19 +41,23 @@ function() {
             VideoSlideView,
             // Aaron Trope
             AaronTropeSlideView,
+            // Graphics
+             new SlideView({
+                el: slides[9],
+            }),
             // Hello Racer
             HelloRacerSlideView,
             // Visualizing Algorithms
             new SlideView({
-                el: slides[10],
+                el: slides[11],
             }),
             // Enable
             new SlideView({
-                el: slides[11],
+                el: slides[12],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[12],
+                el: slides[13],
             }),
             // I'm Ready
             ReadySlideView
