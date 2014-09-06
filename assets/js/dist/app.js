@@ -238,7 +238,7 @@ var StartView = (function() {
 
 
     var KeylightSlideView = new IframeSlideView({
-        el: $("#sound-viz"),
+        el: $("#keylight"),
         src: "http://hakim.se/experiments/html5/keylight/03/#488x845_311x688_193x505_213x329_338x237_477x333_622x229_774x331_763x523_677x684_2"
     });
 
@@ -812,13 +812,18 @@ var SlidedeckView = function(el, slides) {
     }
 
     if (isMobile || isSmallScreen) {
+        // current experience does not perform scrolling jacking for
+        // mobile experiences
+        // treat slide deck as if it were static
         frames.forEach(function(f,i){
             if (f instanceof AnimSlideView && !(f instanceof PersistentAnimSlideView) && f.play) {
                 f.play();
             }
         });
+
     } else {
-        
+
+        // init event listeners
         hammerTime.on("swipeleft", nextSlide);
         hammerTime.on("swiperight", previousSlide);
         window.addEventListener("keyup", handleKeys);
