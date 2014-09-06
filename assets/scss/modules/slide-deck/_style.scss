@@ -104,6 +104,26 @@ $xIncrement: 200px;
   }
 }
 
+.no-csstransforms3d {
+  .slide {
+    position: relative;
+    @include transform(none !important);
+    opacity: 1 !important;
+    width: 100%;
+    padding: 1.25em;
+    @include box-shadow(none);
+    border-radius: none;
+  }
+
+  .aspect-ratio {
+    padding-bottom: 100%;
+  }
+
+  #world {
+    overflow: auto;
+  }
+}
+
 @include mq-medium-up {
   .slide {
       

@@ -707,6 +707,28 @@ iframe {
     padding-bottom: 100%;
   }
 }
+.no-csstransforms3d .slide {
+  position: relative;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  width: 100%;
+  padding: 1.25em;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: none;
+}
+.no-csstransforms3d .aspect-ratio {
+  padding-bottom: 100%;
+}
+.no-csstransforms3d #world {
+  overflow: auto;
+}
+
 @media only screen and (min-width: 40.063em) {
   .slide {
     position: absolute;
@@ -1054,6 +1076,12 @@ iframe {
   border: 1px solid rgba(240, 240, 240, 0.3);
 }
 
+@media only screen and (max-width: 40em) {
+  .external-link {
+    font-size: 1.3rem;
+    margin: 1em;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
@@ -1738,6 +1766,7 @@ iframe {
     width: 5.625rem;
     right: 1.25rem;
     top: -2.5rem;
+    z-index: -1;
   }
 }
 
@@ -1822,6 +1851,10 @@ iframe {
     background-size: cover;
   }
 }
+#networking {
+  background: black;
+}
+
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
