@@ -96,7 +96,7 @@ scale(1));
 
 .slideUp {
     @include transform(translateY(-100%));
-    transition: all 500ms $easeInOutExpo;
+    @include transition(all 500ms $easeInOutExpo);
     opacity: 0;
 }
 
@@ -109,17 +109,17 @@ scale(1));
 
 .hide {
     opacity: 0;
-    transition: opacity 0.5s;
+    @include transition(opacity 0.5s);
 }
 
 .show {
     opacity: 1;
-    transition: opacity 0.5s;
+    @include transition(opacity 0.5s);
 }
 
 .scaleDown {
     @include transform(translate3d(-2px,-2px,0) scale(0));
     // custom easeInBack
-    transition: all 500ms cubic-bezier(0.520, -0.600, 0.735, 0.045);
+    @include transition( all 500ms cubic-bezier(0.520, -0.600, 0.735, 0.045));
 }
 
