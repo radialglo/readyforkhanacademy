@@ -1,5 +1,5 @@
  /* jshint strict: false */
-define(['var/addWheelListener','var/rfa'], function() {
+define(['var/browserDetect','var/addWheelListener','var/rfa'], function() {
 
 var transEndEventNames = {
     'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
@@ -254,15 +254,28 @@ var SlidedeckView = function(el, slides) {
         ticking = false;
     }
 
- 
-    hammerTime.on("swipeleft", nextSlide);
-    hammerTime.on("swiperight", previousSlide);
-    window.addEventListener("keyup", handleKeys);
-    addWheelListener(window, handleMouseWheel);
+    if (isMobile || isSmallScreen) {
+        // current experience does not perform scrolling jacking for
+        // mobile experiences
+        // treat slide deck as if it were static
+        frames.forEach(function(f,i){
+            if (f instanceof AnimSlideView && !(f instanceof PersistentAnimSlideView) && f.play) {
+                f.play();
+            }
+        });
 
-    if (Modernizr.csstransforms3d) {
-        requestTick();
-    }
+    } else {
+
+        // init event listeners
+        hammerTime.on("swipeleft", nextSlide);
+        hammerTime.on("swiperight", previousSlide);
+        window.addEventListener("keyup", handleKeys);
+        addWheelListener(window, handleMouseWheel);
+
+        if (Modernizr.csstransforms3d) {
+            requestTick();
+        }
+    } 
 
     this.getFrames = function() {
         return frames;

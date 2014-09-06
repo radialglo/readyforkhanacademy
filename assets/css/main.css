@@ -1875,6 +1875,15 @@ iframe {
   background: black;
 }
 
+@media only screen and (max-width: 40em) {
+  #video {
+    background: url(../raw/video_640_640.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/

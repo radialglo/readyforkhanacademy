@@ -105,7 +105,9 @@ module.exports = function (grunt) {
                     // vars
                     "$": false,
                     "$$": false,
-                    "StartView": false
+                    "StartView": false,
+                    "isMobile": false,
+                    "isSmallScreen": false
                 }
             },
             all: {
