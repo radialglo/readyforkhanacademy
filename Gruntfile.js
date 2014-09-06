@@ -88,6 +88,7 @@ module.exports = function (grunt) {
                     "SlideView": false,
                     "AnimSlideView": false,
                     "IframeSlideView": false,
+                    "WebGLIframeSlideView": false,
                     "PersistentAnimSlideView": false,
 
                     // Iframe Slides
@@ -107,7 +108,8 @@ module.exports = function (grunt) {
                     "$$": false,
                     "StartView": false,
                     "isMobile": false,
-                    "isSmallScreen": false
+                    "isSmallScreen": false,
+                    "supportWebGL": false
                 }
             },
             all: {

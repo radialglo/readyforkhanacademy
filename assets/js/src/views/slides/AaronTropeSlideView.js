@@ -1,5 +1,5 @@
-define(['var/querySelector', 'views/IframeSlideView'], function() {
-    var AaronTropeSlideView = new IframeSlideView({
+define(['var/querySelector', 'views/WebGLIframeSlideView'], function() {
+    var AaronTropeSlideView = new WebGLIframeSlideView({
         el: $("#aaron-trope"),
         src: "http://www.aaronkoblin.com/Aaronetrope/"
     });
