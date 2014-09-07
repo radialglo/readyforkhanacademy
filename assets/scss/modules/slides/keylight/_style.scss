@@ -1,13 +1,13 @@
 @import "../../../base/base";
 
 #keylight {
-    background: url(../raw/keylight_960_640.png) no-repeat center center /* fixed */; 
+    background: url(../img/keylight_960_640.png) no-repeat center center /* fixed */; 
     @include background-size(cover);
 }
 
 @include mq-small-only {
     #keylight {
-        background: url(../raw/keylight_small.png) no-repeat center center /* fixed */; 
+        background: url(../img/keylight_small.png) no-repeat center center /* fixed */; 
         @include background-size(cover);
     }
     

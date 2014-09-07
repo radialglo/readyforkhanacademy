@@ -3,7 +3,7 @@
 #video {
    background: black;
    
-	// background: url(../raw/video_960_640.png) no-repeat center center /* fixed */; 
+	// background: url(../img/video_960_640.png) no-repeat center center /* fixed */; 
 	//   @include background-size(cover);
   
 }
@@ -11,7 +11,7 @@
 @include mq-small-only {
 	
 	#video {
-	   background: url(../raw/video_640_640.png) no-repeat center center /* fixed */; 
+	   background: url(../img/video_640_640.png) no-repeat center center /* fixed */; 
 	   @include background-size(cover);
 	}
 }
