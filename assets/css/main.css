@@ -848,10 +848,10 @@ iframe {
  * @see http://compass-style.org/reference/compass/css3/
  */
 .dark-green {
-  background-image: -webkit-linear-gradient(45deg, #125758, #333333);
-  background-image: -moz-linear-gradient(45deg, #125758, #333333);
-  background-image: -o-linear-gradient(45deg, #125758, #333333);
-  background-image: linear-gradient(45deg, #125758, #333333);
+  background-image: -webkit-linear-gradient(45deg, #333333, #125758);
+  background-image: -moz-linear-gradient(45deg, #333333, #125758);
+  background-image: -o-linear-gradient(45deg, #333333, #125758);
+  background-image: linear-gradient(45deg, #333333, #125758);
   color: #EFF;
 }
 .dark-green .content {
@@ -985,10 +985,14 @@ iframe {
  * @see http://compass-style.org/reference/compass/css3/
  */
 .navy-blue {
-  background-image: -webkit-linear-gradient(45deg, #37474f, #242f3b);
-  background-image: -moz-linear-gradient(45deg, #37474f, #242f3b);
-  background-image: -o-linear-gradient(45deg, #37474f, #242f3b);
-  background-image: linear-gradient(45deg, #37474f, #242f3b);
+  /**
+   * adapted from Mirage
+   * @see http://uigradients.com/
+   */
+  background-image: -webkit-linear-gradient(45deg, #16222a 10%, #3a6073 90%);
+  background-image: -moz-linear-gradient(45deg, #16222a 10%, #3a6073 90%);
+  background-image: -o-linear-gradient(45deg, #16222a 10%, #3a6073 90%);
+  background-image: linear-gradient(45deg, #16222a 10%, #3a6073 90%);
   color: #EFF;
 }
 .navy-blue .content {

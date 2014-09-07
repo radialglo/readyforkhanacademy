@@ -11,7 +11,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-09-05
+ * Date: 2014-09-07
  */
 (function(window, undefined) {
 
@@ -196,6 +196,7 @@ var ua = navigator.userAgent||navigator.vendor||window.opera,
 	isTablet = /android|ipad|playbook|silk/i.test(ua),
 	// small screen based off media query dimensions
 	isSmallScreen = window.innerWidth < 641,
+	// adapted from https://github.com/mrdoob/three.js/blob/master/examples/js/Detector.js#L9
 	supportWebGL =  ( function () { try { var canvas = document.createElement( 'canvas' ); return !! (window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) )); } catch( e ) { return false; } } )();
 
 
