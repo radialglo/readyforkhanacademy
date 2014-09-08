@@ -65,7 +65,11 @@ function() {
                 el: slides[14],
             }),
             // I'm Ready
-            ReadySlideView
+            ReadySlideView,
+            // Credits
+            new SlideView({
+                el: slides[16],
+            })
         ]);
         StartView.init(function() {
             slideDeck.play(0);

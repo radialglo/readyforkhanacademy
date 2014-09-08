@@ -849,14 +849,14 @@ var SlidedeckView = function(el, slides) {
 
     } else {
 
-        // init event listeners
-        hammerTime.on("swipeleft", nextSlide);
-        hammerTime.on("swiperight", previousSlide);
-        window.addEventListener("keyup", handleKeys);
-        addWheelListener(window, handleMouseWheel);
-
         if (Modernizr.csstransforms3d) {
             requestTick();
+
+            // init event listeners
+            hammerTime.on("swipeleft", nextSlide);
+            hammerTime.on("swiperight", previousSlide);
+            window.addEventListener("keyup", handleKeys);
+            addWheelListener(window, handleMouseWheel);
         }
     } 
 
@@ -929,7 +929,11 @@ var SlidedeckView = function(el, slides) {
                 el: slides[14],
             }),
             // I'm Ready
-            ReadySlideView
+            ReadySlideView,
+            // Credits
+            new SlideView({
+                el: slides[16],
+            })
         ]);
         StartView.init(function() {
             slideDeck.play(0);

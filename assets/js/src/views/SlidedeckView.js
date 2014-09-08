@@ -269,14 +269,14 @@ var SlidedeckView = function(el, slides) {
 
     } else {
 
-        // init event listeners
-        hammerTime.on("swipeleft", nextSlide);
-        hammerTime.on("swiperight", previousSlide);
-        window.addEventListener("keyup", handleKeys);
-        addWheelListener(window, handleMouseWheel);
-
         if (Modernizr.csstransforms3d) {
             requestTick();
+
+            // init event listeners
+            hammerTime.on("swipeleft", nextSlide);
+            hammerTime.on("swiperight", previousSlide);
+            window.addEventListener("keyup", handleKeys);
+            addWheelListener(window, handleMouseWheel);
         }
     } 
 
