@@ -17,6 +17,11 @@ define(['var/querySelector'], function(){
         var style = this.el.style;
         style.opacity =  data.opacity;
         style[transformProp] = "translate3d(0px , 0px," + data.translateZ  + "px) rotateY(" + data.rotateY + "deg)";
+        style.display = "";
+    };
+
+    SlideView.prototype.hide = function() {
+        this.el.style.display = "none";
     };
 
     /**

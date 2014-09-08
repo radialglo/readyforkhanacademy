@@ -114,6 +114,11 @@ var StartView = (function() {
         var style = this.el.style;
         style.opacity =  data.opacity;
         style[transformProp] = "translate3d(0px , 0px," + data.translateZ  + "px) rotateY(" + data.rotateY + "deg)";
+        style.display = "";
+    };
+
+    SlideView.prototype.hide = function() {
+        this.el.style.display = "none";
     };
 
     /**
@@ -732,7 +737,8 @@ var SlidedeckView = function(el, slides) {
     function update() {
 
         var translateZ,
-            rotateY;
+            rotateY,
+            opacity;
 
         if (isMouseWheel) {
             frames.forEach(function(f, i){
@@ -762,11 +768,17 @@ var SlidedeckView = function(el, slides) {
                 rotateY = 90;
             }
 
-            f.update({
-                opacity: calculateOpacity(translateZ),
-                rotateY: rotateY,
-                translateZ: translateZ
-            });
+            opacity = calculateOpacity(translateZ);
+
+            if (opacity > 0 && i >= (curIdx - 1)) {
+                f.update({
+                    opacity: opacity,
+                    rotateY: rotateY,
+                    translateZ: translateZ
+                });
+            } else {
+                f.hide();
+            }
 
         });
 
