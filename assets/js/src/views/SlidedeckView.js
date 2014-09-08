@@ -28,8 +28,11 @@ var SlidedeckView = function(el, slides) {
         prevFrame = frames[curIdx - 1],
         nextTwoFrame = frames[curIdx + 2],
         nextFrame = frames[curIdx + 1],
+        // arrow keys
         KEY_LEFT = 37,
-        KEY_RIGHT = 39;
+        KEY_RIGHT = 39,
+        KEY_UP = 38,
+        KEY_DOWN = 40;
 
     var hammerTime = new Hammer.Manager(el, {
         recognizers: [
@@ -78,11 +81,11 @@ var SlidedeckView = function(el, slides) {
     function handleKeys(e) {
       
         var keyCode = e.keyCode;
-        if (keyCode === KEY_LEFT) {
+        if (keyCode === KEY_LEFT || keyCode === KEY_DOWN) {
 
             previousSlide();
             
-        } else if (keyCode === KEY_RIGHT) {
+        } else if (keyCode === KEY_RIGHT || keyCode === KEY_UP) {
            
             nextSlide();
         }

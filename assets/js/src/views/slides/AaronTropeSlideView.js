@@ -4,5 +4,4 @@ define(['var/querySelector', 'views/WebGLIframeSlideView'], function() {
         src: "http://www.aaronkoblin.com/Aaronetrope/"
     });
 
-    window.AaronTropeSlideView = AaronTropeSlideView;
 });

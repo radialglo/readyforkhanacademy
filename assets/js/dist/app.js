@@ -2,7 +2,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-09-07
+ * Date: 2014-09-08
  */
 (function(window, undefined) {
 
@@ -271,8 +271,6 @@ var ua = navigator.userAgent||navigator.vendor||window.opera,
         el: $("#hello-ka"),
     });
 
-    window.HelloKASlideView = HelloKASlideView;
-
 
     var KeylightSlideView = new IframeSlideView({
         el: $("#keylight"),
@@ -439,7 +437,6 @@ var draw = function() {
 })();
 
          
-    window.VideoSlideView = VideoSlideView;
 
 
     var AaronTropeSlideView = new WebGLIframeSlideView({
@@ -447,7 +444,6 @@ var draw = function() {
         src: "http://www.aaronkoblin.com/Aaronetrope/"
     });
 
-    window.AaronTropeSlideView = AaronTropeSlideView;
 
 
     var HelloRacerSlideView = new WebGLIframeSlideView({
@@ -478,7 +474,6 @@ var draw = function() {
         }
     });
 
-    window.ReadySlideView = ReadySlideView;
 
 // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
 
@@ -613,8 +608,11 @@ var SlidedeckView = function(el, slides) {
         prevFrame = frames[curIdx - 1],
         nextTwoFrame = frames[curIdx + 2],
         nextFrame = frames[curIdx + 1],
+        // arrow keys
         KEY_LEFT = 37,
-        KEY_RIGHT = 39;
+        KEY_RIGHT = 39,
+        KEY_UP = 38,
+        KEY_DOWN = 40;
 
     var hammerTime = new Hammer.Manager(el, {
         recognizers: [
@@ -663,11 +661,11 @@ var SlidedeckView = function(el, slides) {
     function handleKeys(e) {
       
         var keyCode = e.keyCode;
-        if (keyCode === KEY_LEFT) {
+        if (keyCode === KEY_LEFT || keyCode === KEY_DOWN) {
 
             previousSlide();
             
-        } else if (keyCode === KEY_RIGHT) {
+        } else if (keyCode === KEY_RIGHT || keyCode === KEY_UP) {
            
             nextSlide();
         }

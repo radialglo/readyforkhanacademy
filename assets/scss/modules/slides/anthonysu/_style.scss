@@ -1,0 +1,38 @@
+@import "../../../base/base";
+
+#anthonysu {
+    background: url(../img/asu.jpg) no-repeat center center; 
+    @include background-size(cover);
+    .content {
+        height: 100%;
+    }
+}
+
+#im-asu {
+    display: inline-block;
+    color: white;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate3d(-50%,-50%,0);
+    z-index: 2;
+    border-bottom: 1px solid #CCC;
+}
+#pattern {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: rgba(0,0,0,0.6);
+    z-index: 1;
+}
+
+@include mq-small-only {
+    #anthonysu {
+        padding: 0;
+        background-image: url(../img/asu_640_640.jpg);
+    }
+}
+

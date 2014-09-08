@@ -113,5 +113,4 @@ var draw = function() {
 })();
 
          
-    window.VideoSlideView = VideoSlideView;
 });

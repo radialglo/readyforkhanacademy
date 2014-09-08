@@ -21,5 +21,4 @@ define(['var/querySelector', 'views/AnimSlideView'], function() {
         }
     });
 
-    window.ReadySlideView = ReadySlideView;
 });
