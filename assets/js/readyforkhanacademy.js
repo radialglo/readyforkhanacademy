@@ -907,11 +907,15 @@ var SlidedeckView = function(el, slides) {
             new SlideView({
                 el: slides[4],
             }),
+            // Audio
+            new SlideView({
+                el: slides[5],
+            }),
             // Sound Visualization
             KeylightSlideView,
             // Chrome Racer
             new SlideView({
-                el: slides[6],
+                el: slides[7],
             }),
             // Video Introduction
             VideoSlideView,
@@ -919,21 +923,21 @@ var SlidedeckView = function(el, slides) {
             AaronTropeSlideView,
             // Graphics
              new SlideView({
-                el: slides[9],
+                el: slides[10],
             }),
             // Hello Racer
             HelloRacerSlideView,
             // Visualizing Algorithms
             new SlideView({
-                el: slides[11],
+                el: slides[12],
             }),
             // Enable
             new SlideView({
-                el: slides[12],
+                el: slides[13],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[13],
+                el: slides[14],
             }),
             // I'm Ready
             ReadySlideView

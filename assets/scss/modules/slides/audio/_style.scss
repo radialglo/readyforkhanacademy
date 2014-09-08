@@ -1,0 +1,83 @@
+
+$dark: #41203D;
+
+#audio {
+    padding: 5%;
+    background: white;
+    // use padding hack on content to fix sizing issues on safari
+    .content {
+        height: 0;
+        padding-bottom: #{ 172 / 818 * 100 + "%"};
+    }
+}
+
+#audio-svg {
+    width: 75%;
+    > #layer1 {
+        fill: $dark;
+    }
+}
+
+
+
+.vinyl-container {
+    width: 20%;
+    display: inline-block;
+    position: relative;
+    @include transform3d(translate3d(10%, 3%, 0));
+}
+
+.vinyl-aspect-ratio {
+    width: 0;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.vinyl-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.outer-disc {
+    width: 100%;
+    height: 100%;
+    background: $dark;
+    border-radius: 50%;
+    position: relative;
+}
+
+.base-plate {
+    width: 30%;
+    height: 30%;
+    top: 50%;
+    left: 50%;
+    @include transform(translate3d(-50%, -50%, 0));
+    background: #CCC;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.inner-disc {
+    width: 25%;
+    height: 25%;
+    top: 50%;
+    left: 50%;
+    @include transform(translate3d(-50%, -50%, 0));
+    background: #95BF6D;
+    background: #e87f1e;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.disc-top {
+    width: 5%;
+    height: 5%;
+    top: 50%;
+    left: 50%;
+    @include transform(translate3d(-50%, -50%, 0));
+    background: $dark;
+    position: absolute;
+    border-radius: 50%;
+}
