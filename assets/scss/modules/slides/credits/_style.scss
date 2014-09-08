@@ -1,0 +1,30 @@
+@import "../../../base/base";
+
+#credits {
+    padding: 3em;
+    .credits-subheading {
+        text-align: left;
+    }
+
+}
+
+.credits-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li {
+        &:before {
+            content: "-    ";
+        }
+        line-height: 1.5em;
+        margin: 1em 0;
+    }
+}
+
+
+@include mq-small-only {
+    #credits {
+        padding: 1em;
+    }
+}
+

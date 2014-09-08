@@ -1,7 +1,7 @@
 @import "../../base/base";
 
 
-$slideCount: 16;
+$slideCount: 17;
 $slideWidth: rem-calc(960px);
 $slideHeight: rem-calc(640px);
 $slideHeightPerWidth: #{$slideHeight / $slideWidth * 100 + "%"};

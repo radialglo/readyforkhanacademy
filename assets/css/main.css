@@ -646,51 +646,54 @@ iframe {
   perspective-origin: right;
 }
 #world .slide:nth-child(1) {
-  z-index: 16;
+  z-index: 17;
 }
 #world .slide:nth-child(2) {
-  z-index: 15;
+  z-index: 16;
 }
 #world .slide:nth-child(3) {
-  z-index: 14;
+  z-index: 15;
 }
 #world .slide:nth-child(4) {
-  z-index: 13;
+  z-index: 14;
 }
 #world .slide:nth-child(5) {
-  z-index: 12;
+  z-index: 13;
 }
 #world .slide:nth-child(6) {
-  z-index: 11;
+  z-index: 12;
 }
 #world .slide:nth-child(7) {
-  z-index: 10;
+  z-index: 11;
 }
 #world .slide:nth-child(8) {
-  z-index: 9;
+  z-index: 10;
 }
 #world .slide:nth-child(9) {
-  z-index: 8;
+  z-index: 9;
 }
 #world .slide:nth-child(10) {
-  z-index: 7;
+  z-index: 8;
 }
 #world .slide:nth-child(11) {
-  z-index: 6;
+  z-index: 7;
 }
 #world .slide:nth-child(12) {
-  z-index: 5;
+  z-index: 6;
 }
 #world .slide:nth-child(13) {
-  z-index: 4;
+  z-index: 5;
 }
 #world .slide:nth-child(14) {
-  z-index: 3;
+  z-index: 4;
 }
 #world .slide:nth-child(15) {
-  z-index: 2;
+  z-index: 3;
 }
 #world .slide:nth-child(16) {
+  z-index: 2;
+}
+#world .slide:nth-child(17) {
   z-index: 1;
 }
 
@@ -3267,5 +3270,106 @@ iframe {
 
   #ready-text {
     font-size: 6em;
+  }
+}
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
+ */
+/**
+ * Import once
+ */
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/856ffff4d9c8cd9195d23c43cc1b5cfacb5b7a4c/scss/foundation/_settings.scss#L146
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
+ */
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
+#credits {
+  padding: 3em;
+}
+#credits .credits-subheading {
+  text-align: left;
+}
+
+.credits-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.credits-list > li {
+  line-height: 1.5em;
+  margin: 1em 0;
+}
+.credits-list > li:before {
+  content: "-    ";
+}
+
+@media only screen and (max-width: 40em) {
+  #credits {
+    padding: 1em;
   }
 }
