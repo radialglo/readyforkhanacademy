@@ -20,6 +20,14 @@ define(['var/querySelector'], function(){
         style.display = "";
     };
 
+    /**
+     * @method hide
+     * @desc hide the element by removing it from render tree
+     * @see http://stackoverflow.com/questions/11831429/mobile-safari-on-ios-crashes-on-big-pages/14866503#14866503
+     * @see http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
+     * @see http://www.html5rocks.com/en/tutorials/speed/high-performance-animations/
+     *
+     */
     SlideView.prototype.hide = function() {
         this.el.style.display = "none";
     };
