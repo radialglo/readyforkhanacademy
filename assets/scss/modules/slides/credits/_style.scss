@@ -2,8 +2,17 @@
 
 #credits {
     padding: 3em;
+    .credits-heading,
     .credits-subheading {
         text-align: left;
+    }
+    color: #222;
+    background: white;
+    a {
+        color: #01a2ff;
+        &::before {
+            background-color: #01a2ff;
+        }
     }
 
 }

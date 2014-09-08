@@ -3350,9 +3350,18 @@ iframe {
  */
 #credits {
   padding: 3em;
+  color: #222;
+  background: white;
 }
+#credits .credits-heading,
 #credits .credits-subheading {
   text-align: left;
+}
+#credits a {
+  color: #01a2ff;
+}
+#credits a::before {
+  background-color: #01a2ff;
 }
 
 .credits-list {

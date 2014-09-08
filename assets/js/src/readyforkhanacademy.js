@@ -74,6 +74,9 @@ function() {
         StartView.init(function() {
             slideDeck.play(0);
         });
-        window.slideDeck = slideDeck;
+        
+        if (window.console) {
+            console.log(document.childNodes[1].nodeValue);
+        }
 
 });
