@@ -3361,6 +3361,9 @@ iframe {
 #credits .credits-subheading {
   text-align: left;
 }
+#credits .credits-subheading {
+  font-style: italic;
+}
 #credits a {
   color: #01a2ff;
 }
@@ -3375,7 +3378,7 @@ iframe {
 }
 .credits-list > li {
   line-height: 1.5em;
-  margin: 1em 0;
+  margin: 1em 0 0 0;
 }
 .credits-list > li:before {
   content: "-    ";
@@ -3383,6 +3386,15 @@ iframe {
 
 @media only screen and (max-width: 40em) {
   #credits {
-    padding: 1em;
+    padding: 1em 2em;
+  }
+  #credits h1 {
+    font-size: 2em;
+  }
+  #credits h2 {
+    font-size: 1.75em;
+  }
+  #credits li, #credits .by {
+    font-size: 1.5em;
   }
 }

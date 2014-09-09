@@ -6,6 +6,10 @@
     .credits-subheading {
         text-align: left;
     }
+
+    .credits-subheading {
+        font-style: italic;
+    }
     color: #222;
     background: white;
     a {
@@ -26,14 +30,29 @@
             content: "-    ";
         }
         line-height: 1.5em;
-        margin: 1em 0;
+        margin: 1em 0 0 0;
     }
 }
 
 
 @include mq-small-only {
     #credits {
-        padding: 1em;
+        padding: 1em 2em;
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.75em;
+        }
+
+        li, .by {
+            font-size: 1.5em;
+        }
     }
+
 }
+
+
 
