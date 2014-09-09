@@ -270,6 +270,9 @@ var SlidedeckView = function(el, slides) {
         // treat slide deck as if it were static
         frames.forEach(function(f,i){
             if (f instanceof AnimSlideView && !(f instanceof PersistentAnimSlideView) && f.play) {
+                if (f.setup) {
+                    f.setup();
+                }
                 f.play();
             }
         });

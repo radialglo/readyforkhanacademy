@@ -6,6 +6,7 @@ define(['var/querySelector',
 'views/WebGLIframeSlideView',
 'views/slides/HelloKASlideView',
 'views/slides/KeylightSlideView',
+'views/slides/NetworkingSlideView',
 'views/slides/VideoSlideView',
 'views/slides/AaronTropeSlideView',
 'views/slides/HelloRacerSlideView',
@@ -38,9 +39,11 @@ function() {
             }),
             // Sound Visualization
             KeylightSlideView,
+            // Networking
+            NetworkingSlideView,
             // Chrome Racer
             new SlideView({
-                el: slides[7],
+                el: slides[8],
             }),
             // Video Introduction
             VideoSlideView,
@@ -48,27 +51,27 @@ function() {
             AaronTropeSlideView,
             // Graphics
              new SlideView({
-                el: slides[10],
+                el: slides[11],
             }),
             // Hello Racer
             HelloRacerSlideView,
             // Visualizing Algorithms
             new SlideView({
-                el: slides[12],
+                el: slides[13],
             }),
             // Enable
             new SlideView({
-                el: slides[13],
+                el: slides[14],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[14],
+                el: slides[15],
             }),
             // I'm Ready
             ReadySlideView,
             // Credits
             new SlideView({
-                el: slides[16],
+                el: slides[17],
             })
         ]);
         StartView.init(function() {

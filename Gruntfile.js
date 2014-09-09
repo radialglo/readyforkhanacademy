@@ -98,6 +98,7 @@ module.exports = function (grunt) {
 
                     // Animation Slides
                     "HelloKASlideView": false,
+                    "NetworkingSlideView": false,
                     "ReadySlideView": false,
 
                     // Persistent Animation Slides

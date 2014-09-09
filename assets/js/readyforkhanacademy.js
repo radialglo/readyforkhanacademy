@@ -11,7 +11,7 @@
  * /? [- /\ |) `/   /= () /?   /< |-| /\ |\| /\ ( /\ |) [- |\/| `/
  *
  * v0.1.0
- * Date: 2014-09-08
+ * Date: 2014-09-09
  */
 (function(window, undefined) {
 
@@ -257,6 +257,10 @@ var ua = navigator.userAgent||navigator.vendor||window.opera,
         if (opts.replay) {
             this.replay = opts.replay;
         }
+
+        if (opts.setup) {
+            this.setup = opts.setup;
+        }
         this.played = false;
 
     };
@@ -264,6 +268,11 @@ var ua = navigator.userAgent||navigator.vendor||window.opera,
     AnimSlideView.prototype = Object.create(SlideView.prototype);
     AnimSlideView.prototype.constructor = AnimSlideView;
 
+    /**
+     * @method setup
+     * @desc makes preparations before animation
+     */
+    AnimSlideView.prototype.setup = null;
     /**
      * @method play
      * @desc plays animation
@@ -298,6 +307,68 @@ var ua = navigator.userAgent||navigator.vendor||window.opera,
         el: $("#keylight"),
         src: "http://hakim.se/experiments/html5/keylight/03/#488x845_311x688_193x505_213x329_338x237_477x333_622x229_774x331_763x523_677x684_2"
     });
+
+
+    var NetworkingSlideView,
+    renderTrace = function(path) {
+    /**
+     *  @see http://jakearchibald.com/2013/animated-line-drawing-svg/
+     */
+
+        var length = path.getTotalLength();
+        
+        path.style.transition = path.style.WebkitTransition =
+        'stroke-dashoffset 1.5s ease-in-out';
+        // Go!
+        path.style.strokeDashoffset = '0';
+    },
+    hideStroke= function(path) {
+        var length = path.getTotalLength();
+        // Clear any previous transition
+        path.style.transition = path.style.WebkitTransition =
+        'none';
+        // Set up the starting positions
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = length;
+    };
+
+    (function() {
+
+        var paths;
+
+         NetworkingSlideView = new AnimSlideView({
+            el: $("#networking"),
+            setup: function() {
+              if (!this.ready) {
+                paths = Array.prototype.slice.call(this.el.querySelectorAll("path"));
+                paths.forEach(function(p) {
+                    hideStroke(p);
+                });
+                this.ready = true;
+                this.played = false;
+              }
+            },
+            play: function() {
+                this.ready = false;
+                if (!this.played) {
+                    paths.forEach(function(p){
+                        renderTrace(p);
+                    });
+                    this.played = true;
+                } else {
+                    this.replay();
+                }
+            },
+            replay: function() {
+                this.setup();
+                this.el.getBoundingClientRect();
+                this.play();
+            }
+        });
+
+
+    })();
+
 
 
 
@@ -872,6 +943,9 @@ var SlidedeckView = function(el, slides) {
         // treat slide deck as if it were static
         frames.forEach(function(f,i){
             if (f instanceof AnimSlideView && !(f instanceof PersistentAnimSlideView) && f.play) {
+                if (f.setup) {
+                    f.setup();
+                }
                 f.play();
             }
         });
@@ -931,9 +1005,11 @@ var SlidedeckView = function(el, slides) {
             }),
             // Sound Visualization
             KeylightSlideView,
+            // Networking
+            NetworkingSlideView,
             // Chrome Racer
             new SlideView({
-                el: slides[7],
+                el: slides[8],
             }),
             // Video Introduction
             VideoSlideView,
@@ -941,27 +1017,27 @@ var SlidedeckView = function(el, slides) {
             AaronTropeSlideView,
             // Graphics
              new SlideView({
-                el: slides[10],
+                el: slides[11],
             }),
             // Hello Racer
             HelloRacerSlideView,
             // Visualizing Algorithms
             new SlideView({
-                el: slides[12],
+                el: slides[13],
             }),
             // Enable
             new SlideView({
-                el: slides[13],
+                el: slides[14],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[14],
+                el: slides[15],
             }),
             // I'm Ready
             ReadySlideView,
             // Credits
             new SlideView({
-                el: slides[16],
+                el: slides[17],
             })
         ]);
         StartView.init(function() {

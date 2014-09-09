@@ -16,6 +16,10 @@ define(['var/querySelector','views/SlideView.js'], function(){
         if (opts.replay) {
             this.replay = opts.replay;
         }
+
+        if (opts.setup) {
+            this.setup = opts.setup;
+        }
         this.played = false;
 
     };
@@ -23,6 +27,11 @@ define(['var/querySelector','views/SlideView.js'], function(){
     AnimSlideView.prototype = Object.create(SlideView.prototype);
     AnimSlideView.prototype.constructor = AnimSlideView;
 
+    /**
+     * @method setup
+     * @desc makes preparations before animation
+     */
+    AnimSlideView.prototype.setup = null;
     /**
      * @method play
      * @desc plays animation
