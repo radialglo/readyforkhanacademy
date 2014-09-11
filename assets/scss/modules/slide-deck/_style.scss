@@ -140,3 +140,19 @@ $xIncrement: 200px;
       @include background-image(linear-gradient(45deg,#125758,#333));
   }
 }
+
+@include mq-xlarge-up {
+  // 1680 * 0.75
+  .slide {
+    width: rem-calc(1260px);
+  }
+}
+
+@include mq-xxlarge-up {
+  html {
+    font-size: 105%;
+  }
+  .slide {
+    width: rem-calc(1680px);
+  }
+}

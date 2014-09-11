@@ -786,6 +786,20 @@ iframe {
     background-image: linear-gradient(45deg, #125758, #333333);
   }
 }
+@media only screen and (min-width: 90.063em) {
+  .slide {
+    width: 78.75rem;
+  }
+}
+@media only screen and (min-width: 120.063em) {
+  html {
+    font-size: 105%;
+  }
+
+  .slide {
+    width: 105rem;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
@@ -2644,7 +2658,8 @@ iframe {
   width: 484px;
   height: 484px;
   position: relative;
-  left: 240px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 #maze {
