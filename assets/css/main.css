@@ -527,7 +527,7 @@ html, body {
   padding: 0;
   margin: 0;
   font-size: 100%;
-  font-family: Sniglet;
+  font-family: 'Roboto Condensed';
   background: #fafafa;
 }
 
@@ -1885,7 +1885,7 @@ iframe {
 }
 #specifics .happy-hopper {
   position: absolute;
-  right: 1.25rem;
+  right: 3.75rem;
   top: 1.875rem;
   width: 7.5rem;
 }
@@ -2745,7 +2745,6 @@ iframe {
  * @see http://compass-style.org/reference/compass/css3/
  */
 #ready-text {
-  font-family: 'Sniglet';
   position: absolute;
   bottom: 0;
   color: #EEF;
@@ -3458,6 +3457,7 @@ iframe {
 }
 #credits .credits-subheading {
   font-style: italic;
+  color: #AAA;
 }
 #credits a {
   color: #01a2ff;
