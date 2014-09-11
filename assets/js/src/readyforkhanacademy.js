@@ -10,6 +10,7 @@ define(['var/querySelector',
 'views/slides/VideoSlideView',
 'views/slides/AaronTropeSlideView',
 'views/slides/HelloRacerSlideView',
+'views/slides/MazeSlideView',
 'views/slides/ReadySlideView',
 'views/SlidedeckView'],
 function() {
@@ -59,19 +60,21 @@ function() {
             new SlideView({
                 el: slides[13],
             }),
+            // Maze Slide View
+            MazeSlideView,
             // Enable
             new SlideView({
-                el: slides[14],
+                el: slides[15],
             }),
             // Anthony Su
             new SlideView({
-                el: slides[15],
+                el: slides[16],
             }),
             // I'm Ready
             ReadySlideView,
             // Credits
             new SlideView({
-                el: slides[17],
+                el: slides[18],
             })
         ]);
         StartView.init(function() {

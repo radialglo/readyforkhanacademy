@@ -103,6 +103,7 @@ module.exports = function (grunt) {
 
                     // Persistent Animation Slides
                     "VideoSlideView": false,
+                    "MazeSlideView": false,
 
                     // vars
                     "$": false,

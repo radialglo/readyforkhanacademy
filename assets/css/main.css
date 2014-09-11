@@ -646,57 +646,60 @@ iframe {
   perspective-origin: right;
 }
 #world .slide:nth-child(1) {
-  z-index: 18;
+  z-index: 19;
 }
 #world .slide:nth-child(2) {
-  z-index: 17;
+  z-index: 18;
 }
 #world .slide:nth-child(3) {
-  z-index: 16;
+  z-index: 17;
 }
 #world .slide:nth-child(4) {
-  z-index: 15;
+  z-index: 16;
 }
 #world .slide:nth-child(5) {
-  z-index: 14;
+  z-index: 15;
 }
 #world .slide:nth-child(6) {
-  z-index: 13;
+  z-index: 14;
 }
 #world .slide:nth-child(7) {
-  z-index: 12;
+  z-index: 13;
 }
 #world .slide:nth-child(8) {
-  z-index: 11;
+  z-index: 12;
 }
 #world .slide:nth-child(9) {
-  z-index: 10;
+  z-index: 11;
 }
 #world .slide:nth-child(10) {
-  z-index: 9;
+  z-index: 10;
 }
 #world .slide:nth-child(11) {
-  z-index: 8;
+  z-index: 9;
 }
 #world .slide:nth-child(12) {
-  z-index: 7;
+  z-index: 8;
 }
 #world .slide:nth-child(13) {
-  z-index: 6;
+  z-index: 7;
 }
 #world .slide:nth-child(14) {
-  z-index: 5;
+  z-index: 6;
 }
 #world .slide:nth-child(15) {
-  z-index: 4;
+  z-index: 5;
 }
 #world .slide:nth-child(16) {
-  z-index: 3;
+  z-index: 4;
 }
 #world .slide:nth-child(17) {
-  z-index: 2;
+  z-index: 3;
 }
 #world .slide:nth-child(18) {
+  z-index: 2;
+}
+#world .slide:nth-child(19) {
   z-index: 1;
 }
 
@@ -2549,6 +2552,54 @@ iframe {
     background-size: cover;
   }
 }
+#depth-first-search {
+  background: white;
+}
+
+#maze-container {
+  width: 484px;
+  height: 484px;
+  position: relative;
+  left: 240px;
+}
+
+#maze {
+  width: 480px;
+  height: 480px;
+  border: 2px solid black;
+  position: relative;
+  overflow: hidden;
+}
+
+#maze-controls {
+  font-family: 'Roboto Condensed', sans-serif;
+  position: absolute;
+  left: 480px;
+  top: 0;
+  margin: 0 2em 2em 2em;
+  padding: 2em;
+  border: 1px solid #CCC;
+}
+
+#maze-control-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 2em;
+}
+#maze-control-list a {
+  color: #CCC;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.5em;
+}
+#maze-control-list a::before {
+  visibility: hidden;
+}
+#maze-control-list .active {
+  color: #01a2ff;
+}
+
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
@@ -2658,7 +2709,7 @@ iframe {
   left: 0;
   right: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -3474,9 +3525,14 @@ iframe {
 .credits-list > li {
   line-height: 1.5em;
   margin: 1em 0 0 0;
+  font-size: 1.3em;
 }
 .credits-list > li:before {
   content: "-    ";
+}
+
+.by {
+  font-size: 1.3em;
 }
 
 @media only screen and (max-width: 40em) {
