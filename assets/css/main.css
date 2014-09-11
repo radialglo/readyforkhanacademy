@@ -2552,8 +2552,92 @@ iframe {
     background-size: cover;
   }
 }
+/*------------------------------------*\
+    BASE
+\*------------------------------------*/
+/**
+ * imports for all mixins + global project variables
+ */
+/**
+ * Easings
+ */
+/*------------------------------------*\
+    EASINGS
+\*------------------------------------*/
+/**
+ * Adapted from https://github.com/wagerfield/cssmixins
+ *
+ * Thanks to Robert Penner for his work on easing,
+ * and to Matthew Lein for converting these functions into
+ * approximated cubic-bezier functions. 
+ *
+ * @see http://robertpenner.com/
+ * @see http://matthewlein.com/ceaser/
+ * @see http://easings.net/
+ */
+/**
+ * Responsive
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
+ */
+/**
+ * Import once
+ */
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/856ffff4d9c8cd9195d23c43cc1b5cfacb5b7a4c/scss/foundation/_settings.scss#L146
+ */
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+/**
+ * Functions
+ */
+/*------------------------------------*\
+   FUNCTIONS
+\*------------------------------------*/
+/**
+ * @see Zurb Foundation
+ * @see https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
+ */
+/**
+ * Import once
+ */
+/**
+ * Typography
+ */
+/*------------------------------------*\
+    TYPOGRAPHY
+\*------------------------------------*/
+/**
+ *   @include font-face("Blooming Grove", font-files("examples/bgrove.ttf", "examples/bgrove.otf"));
+ *   produces
+ *   @font-face {
+ *       font-family: "Blooming Grove";
+ *       src: url('/fonts/examples/bgrove.ttf') format('truetype'), url('/fonts/examples/bgrove.otf') format('opentype');
+ *   }
+ */
+/**
+ * Compass CSS3
+ * @see http://compass-style.org/reference/compass/css3/
+ */
 #depth-first-search {
   background: white;
+}
+#depth-first-search .external-link {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px solid rgba(240, 240, 240, 0.3);
+  margin-bottom: 0;
 }
 
 #maze-container {
@@ -2600,6 +2684,30 @@ iframe {
   color: #01a2ff;
 }
 
+@media only screen and (max-width: 40em) {
+  #depth-first-search {
+    background: url(../img/maze_640_640.png) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  #depth-first-search .content {
+    width: 100%;
+    height: 100%;
+  }
+  #depth-first-search .external-link {
+    margin-bottom: 1em;
+  }
+
+  #maze-container {
+    display: none;
+  }
+
+  #maze-controls {
+    display: none;
+  }
+}
 /*------------------------------------*\
     BASE
 \*------------------------------------*/
